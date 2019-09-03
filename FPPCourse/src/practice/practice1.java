@@ -1,6 +1,7 @@
 package practice;
 
 import java.text.MessageFormat;
+import java.util.Arrays;
 import java.util.StringJoiner;
 
 import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
@@ -56,6 +57,7 @@ public class practice1 {
 		StringJoiner sjs = new StringJoiner(",","[","]");
 		for(String item : abs)
 			System.out.println(sjs.add(item));
+		System.out.println(Arrays.toString(args));
 		
 	}
 
