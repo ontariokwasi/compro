@@ -1,5 +1,6 @@
 package homework;
 
+import java.util.Arrays;
 
 public class RemoveDups {
 
@@ -30,8 +31,16 @@ public class RemoveDups {
 				break; //exit the loop at the first null encounter;
 			unique [i] = temp[i];
 		}
+		
 		//uncomment below to test the output
 		//System.out.println(Arrays.toString(unique));
+		
+		/***
+		 * INPUT: {"horse", "dog", "cat", "horse","dog"}
+		 * 
+		 * OUTPUT: [horse, dog, cat]
+		 * 
+		 * */
 
 	}
 

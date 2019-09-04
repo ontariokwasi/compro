@@ -15,7 +15,11 @@ public class Prog4 {
 			System.out.print(inputArr[i]);
 		}
 		//System.out.println(Arrays.toString(inputArr));
-
+		
+		/***
+		 * Input: Hello world
+		 * Output: dlrow olleH
+		 * */
 	}
 
 }

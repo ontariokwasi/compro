@@ -19,7 +19,20 @@ public class Prog5 {
 			  }
 			  
 			  }
-		  System.out.println(outstring);	 		
+		  System.out.println(outstring);
+		  
+		  /*
+		   * Sample Output:
+		   *   9		   6		   5		   8		
+			+ 15		+ 47		+ 77		+ 11		
+			_____		_____		_____		_____		
+			
+			
+			   3		   4		   5		   4		
+			+ 34		+ 14		+ 58		+ 42		
+			_____		_____		_____		_____		
+
+		   * */
 	}
 
 }

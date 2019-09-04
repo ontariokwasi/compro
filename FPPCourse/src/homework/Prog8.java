@@ -10,8 +10,13 @@ public class Prog8 {
 			if(num < min)
 				min = num;
 		}
-		System.out.println("minimum Number is: "+min);
-
+		System.out.println("Minimum Number is: "+min);
+		
+		/**
+		 * INPUT: {2, -21, 3, 45, 0, 12, 18, 6, 3, 1, 0, 22}
+		 * 
+		 * OUTPUT: Minimum Number is: -21
+		 * */
 	}
 
 }

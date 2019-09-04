@@ -9,7 +9,11 @@ public class Prog1 {
 		System.out.println(Math.pow(Math.PI, x));
 		System.out.println(Math.pow(y,Math.PI));
 		
-
+		/**
+		 * Outputs are random, sample below:
+		 * 29809.0993334462
+		 * 156.99254530886589
+		 **/
 	}
 
 }

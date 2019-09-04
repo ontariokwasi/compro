@@ -34,5 +34,34 @@ public class Prog3 {
 		 for(String item : recordsArr) {
 			 System.out.println(item.substring(0,item.indexOf(",")));
 		 }
+		 
+		 /**
+		  * OUTPUT:
+		  * 231A
+			113D
+			521W
+			440Q
+			009G
+			336C
+			523E
+			888A
+			176A
+			176B
+			176C
+			500D
+			135B
+			211Q
+			932V
+			678Q
+			239A
+			975B
+			870K
+			231S
+			562M
+			777X
+			933W
+			215A
+
+		  * */
 	}
 }

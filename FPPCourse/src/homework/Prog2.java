@@ -12,6 +12,11 @@ public class Prog2 {
 		
 		System.out.println(sumint);
 		System.out.println(sumintround);
+		/**
+		 * Output: 
+		 * 14
+		 * 15
+		 * */
 	}
 
 }
