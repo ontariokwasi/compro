@@ -8,7 +8,8 @@ public class Prog4 {
 		// TODO Auto-generated method stub
 		System.out.println("Type a string: ");
 		Scanner sc = new Scanner(System.in) ;
-		String input = sc.next();
+		String input = sc.nextLine();
+		sc.close();
 		String [] inputArr = input.split("");
 		for(int i = inputArr.length-1; i >= 0; i-- ) {
 			System.out.print(inputArr[i]);
