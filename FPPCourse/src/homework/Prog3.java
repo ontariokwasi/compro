@@ -32,7 +32,8 @@ public class Prog3 {
 		// Implement the code
 		 String [] recordsArr = records.split(":");
 		 for(String item : recordsArr) {
-			 System.out.println(item.substring(0,item.indexOf(",")));
+			 //System.out.println(item.substring(0,item.indexOf(",")));
+			 System.out.println(item.split(",")[0]);
 		 }
 		 
 		 /**
