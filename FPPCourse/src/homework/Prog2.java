@@ -8,7 +8,7 @@ public class Prog2 {
 		float b = 3.881f;
 		float c = 9.6f;
 		int sumint = (int) (a + b + c);
-		int sumintround = Math.round((a + b + c));
+		int sumintround =(int) Math.round((a + b + c));
 		
 		System.out.println(sumint);
 		System.out.println(sumintround);
