@@ -1,4 +1,4 @@
-package homework2;
+package homework2.problem1;
 
 public class Customer {
 /**

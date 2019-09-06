@@ -1,4 +1,4 @@
-package homework2_2;
+package homework2.problem2;
 
 import java.util.Date;
 import java.util.GregorianCalendar;

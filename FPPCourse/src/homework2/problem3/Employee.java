@@ -1,4 +1,4 @@
-package homework2_3.employeeinfo;
+package homework2.problem3;
 
 import java.time.LocalDate;
 import java.util.Date;

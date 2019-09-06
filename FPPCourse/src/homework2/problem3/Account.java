@@ -1,4 +1,4 @@
-package homework2_3.employeeinfo;
+package homework2.problem3;
 
 class Account {
 	//public final static AccountType CHECKING = AccountType.CHECKING;

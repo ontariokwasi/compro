@@ -1,4 +1,4 @@
-package homework2_2;
+package homework2.problem2;
 
 import java.text.DateFormat;
 import java.util.Date;

@@ -2,8 +2,6 @@ package homework2.problem3;
 
 import java.util.Scanner;
 
-import homework2_3.employeeinfo.Employee;
-
 public class Main {
 	Employee[] emps = null;
 	public static void main(String[] args) {
