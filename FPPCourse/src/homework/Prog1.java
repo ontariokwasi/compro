@@ -14,6 +14,10 @@ public class Prog1 {
 		 * 29809.0993334462
 		 * 156.99254530886589
 		 **/
+		System.out.println(greetings.Hello);
+	}
+	enum greetings{
+		Hello, Hi, Howdy
 	}
 
 }

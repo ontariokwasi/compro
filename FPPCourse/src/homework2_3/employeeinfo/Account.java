@@ -1,4 +1,4 @@
-package homework2_2;
+package homework2_3.employeeinfo;
 
 class Account {
 	//public final static AccountType CHECKING = AccountType.CHECKING;
@@ -21,7 +21,7 @@ class Account {
 	}
 
 	public String toString() {
-		return "type = " + acctType + ", balance = " + balance;
+		return "Account type: " + acctType + "\nCurrent bal: " + balance;
 	}
 
 	public void makeDeposit(double deposit) {
