@@ -86,7 +86,7 @@ public class MyDate {
 					break;
 				}
 			}
-			sc.close();
+			//sc.close();
 		}
 	}
 
