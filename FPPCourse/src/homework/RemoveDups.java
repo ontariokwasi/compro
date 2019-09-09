@@ -26,14 +26,15 @@ public class RemoveDups {
 		}
 		//lets loop through again to remove the null and shrink the array size
 		String [] unique = new String [lastindex];
-		for(int i = 0; i < temp.length; i++) {
-			if(temp[i] == null)
-				break; //exit the loop at the first null encounter;
-			unique [i] = temp[i];
-		}
+		System.arraycopy(temp, 0, unique, 0, lastindex);
+//		for(int i = 0; i < temp.length; i++) {
+//			if(temp[i] == null)
+//				break; //exit the loop at the first null encounter;
+//			unique [i] = temp[i];
+//		}
 		
 		//uncomment below to test the output
-		//System.out.println(Arrays.toString(unique));
+		System.out.println(Arrays.toString(unique));
 		
 		/***
 		 * INPUT: {"horse", "dog", "cat", "horse","dog"}

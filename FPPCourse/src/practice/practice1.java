@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.StringJoiner;
 
 import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
+import com.sun.org.apache.xerces.internal.impl.xs.SubstitutionGroupHandler;
 
 public class practice1 {
 
@@ -58,7 +59,39 @@ public class practice1 {
 		for(String item : abs)
 			System.out.println(sjs.add(item));
 		System.out.println(Arrays.toString(args));
+		System.out.println();
+		System.out.println(sumrange(1,4));
 		
+		System.out.println("GideonG".replace("G", ""));
+		
+		System.out.println(sorted("ACEE", "BDF"));
+	}
+	private static int sumrange(int lowerlimit, int upperlimit) {
+		if(lowerlimit+1 >= upperlimit)
+			return 0;
+		lowerlimit++;
+		return lowerlimit+sumrange(lowerlimit, upperlimit);
+	}
+	
+	private static String sorted(String a, String b) {
+		String fs = a+""+b;
+		if(fs.length() <= 0)
+			return "";
+		else if(fs.length() == 1)
+			return fs;
+		String [] fsarr = fs.split("");
+		String min = fsarr[0];
+		for(String s : fsarr)
+			if(s.compareTo(min) < 0)
+				min = s;
+		if(a.indexOf(min) == 0)
+			a = a.replaceFirst(min, "");
+			//a = a.substring(0,a.indexOf(min)) + a.substring(a.indexOf(min)+1);
+		else if(b.indexOf(min) == 0)
+			b = b.replaceFirst(min, "");
+			//b = b.substring(0,b.indexOf(min)) + b.substring(b.indexOf(min)+1);
+	
+		return min+""+sorted(a,b);
 	}
 
 }
