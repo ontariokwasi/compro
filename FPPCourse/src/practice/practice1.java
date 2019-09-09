@@ -65,6 +65,7 @@ public class practice1 {
 		System.out.println("GideonG".replace("G", ""));
 		
 		System.out.println(sorted("ACEE", "BDF"));
+		System.out.println("A".substring(1));
 	}
 	private static int sumrange(int lowerlimit, int upperlimit) {
 		if(lowerlimit+1 >= upperlimit)

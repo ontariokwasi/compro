@@ -4,7 +4,7 @@ public class Problem2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(minChar("himaa"));
+		System.out.println(minChar("TEACHER"));
 	}
 	static String minChar(String word) {
 		if(word.length() <= 0)
