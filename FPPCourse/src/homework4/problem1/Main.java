@@ -14,12 +14,16 @@ public class Main {
 
 	}
 	 static void printTotal(Shape[] shapes) {
+		 double totalArea = 0.0;
+		 double totalPerimeter = 0.0;
 		 for(Shape shape : shapes) {
-			 System.out.println("The Area of "+shape.getClass().getSimpleName()+" is: "+shape.calcualteArea());
-			 
-			 System.out.println("The Perimeter of "+shape.getClass().getSimpleName()+" is: "+shape.calculatePerimeter());
-			 System.out.println();
+			 //System.out.println("The Area of "+shape.getClass().getSimpleName()+" is: "+shape.calcualteArea());
+			 totalArea += shape.calcualteArea();
+			 //System.out.println("The Perimeter of "+shape.getClass().getSimpleName()+" is: "+shape.calculatePerimeter());
+			 totalPerimeter += shape.calculatePerimeter();
+			 //System.out.println();
 		 }
+		 System.out.println("Total Area: "+totalArea+"\nTotal Perimeter: "+totalPerimeter);
 	 }
 
 }

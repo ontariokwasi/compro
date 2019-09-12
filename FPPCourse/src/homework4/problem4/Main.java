@@ -11,10 +11,13 @@ public class Main {
 		
 		Employee[] emps = {ce, he, se, bce, bce2};
 		
-		//Test toString for the objects and total
+		//Test toString for the objects and total Salary
+		double totalSalary = 0.0;
 		for(Employee emp : emps) {
+			totalSalary += emp.getPayment();
 			System.out.println(emp);
 		}
+		System.out.println("\nTotal Salaries: "+totalSalary);
 
 	}
 
