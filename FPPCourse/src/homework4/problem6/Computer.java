@@ -1,12 +1,12 @@
-package homework4.problem5;
+package homework4.problem6;
 
 import java.util.Objects;
 
 public class Computer {
-	String manufacturer;
-	String processor;
-	int ramSize;
-	double processorSpeed;
+	private String manufacturer;
+	private String processor;
+	private int ramSize;
+	private double processorSpeed;
 	
 	Computer(String manufacturer, String processor, int ramSize, double processorSpeed){
 		this.manufacturer = manufacturer;
@@ -26,6 +26,9 @@ public class Computer {
 	public double computePower() {
 		return ramSize*processorSpeed;
 	}
+	public void setManufacturer(String manufacturer) {
+		this.manufacturer = manufacturer;
+	}
 	
 	@Override
 	public String toString() {
@@ -37,12 +40,12 @@ public class Computer {
 		if(comp == null) return false;
 		if(!(comp instanceof Computer)) return false;
 		Computer com = (Computer) comp;
-		/*
-		 * if(com.processor == this.processor && com.manufacturer == this.manufacturer
-		 * && com.processorSpeed == this.processorSpeed && com.ramSize == this.ramSize)
-		 * { return true; } else { return false; }
-		 */
-		return (this.processor.equals(com.processor) && this.manufacturer.equals(com.manufacturer) && com.processorSpeed == this.processorSpeed && com.ramSize == this.ramSize);
+		if(com.processor == this.processor && com.manufacturer == this.manufacturer && com.processorSpeed == this.processorSpeed && com.ramSize == this.ramSize) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	@Override
