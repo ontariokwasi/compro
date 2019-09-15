@@ -1,6 +1,6 @@
 package homework2.problem4;
 
-public class Circle {
+public final class Circle {
 	private final double radius;
 	
 	public Circle(double radius) {

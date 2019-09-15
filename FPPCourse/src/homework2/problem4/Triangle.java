@@ -1,6 +1,6 @@
 package homework2.problem4;
 
-public class Triangle {
+public final class Triangle {
 	private final double height;
 	private final double base;
 	
