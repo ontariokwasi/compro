@@ -1,5 +1,7 @@
 package Lesson8;
 
+import java.util.Objects;
+
 public class Shopping {
 	private String iname;
 	private double price;
@@ -31,5 +33,20 @@ public class Shopping {
 		// TODO Auto-generated method stub
 		return "[iName="+iname+" Price="+price+"]";
 	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return Objects.hash(iname,price);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null) return false;
+		if(obj.getClass() != this.getClass()) return false;
+		Shopping item = (Shopping) obj;
+		return (item.getIname().equals(this.getIname()) && item.getPrice() == this.getPrice());
+	}
+	
 
 }
