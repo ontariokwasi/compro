@@ -25,6 +25,7 @@ public class ArrayStack implements Stack1 {
 
 	@Override
 	public Object peek() {
+		if(isEmpty()) return null;
 		return top.data;
 	}
 
