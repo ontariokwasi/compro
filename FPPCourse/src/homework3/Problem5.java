@@ -15,8 +15,8 @@ class Problem5 {
 	}
 	@Test 
 	void problem2test() {
-		String expected = "A";
-		String actual = Problem2.minChar("TEACHER");
+		char expected = 'A';
+		char actual = Problem2.minChar("TEACHER");
 		assertEquals(expected, actual);
 	}
 

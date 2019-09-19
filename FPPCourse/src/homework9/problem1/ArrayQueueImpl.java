@@ -1,4 +1,4 @@
-package homework9;
+package homework9.problem1;
 
 public class ArrayQueueImpl {
 	private int[] arr = new int[10];
