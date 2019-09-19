@@ -6,7 +6,25 @@ public class Problem2 {
 		// TODO Auto-generated method stub
 		System.out.println(minChar("TEACHER"));
 	}
-	static String minChar(String word) {
+	static char minChar(String word) {
+		if(word.length() < 1) return (Character) ' ';
+		return minchar(word, word.charAt(0));
+			
+	}
+	private static char minchar(String s, char x) {
+		if(s.length() < 1) return (Character) null;
+		if(s.length() == 1) {
+			if(s.charAt(0) < x) return s.charAt(0);
+			else return x;
+		}
+		if(s.charAt(0) < x) x = s.charAt(0);
+		
+		return minchar(s.substring(1), x);
+	}
+	
+	/** Another solution with replace*/
+	/*
+	 * static String minChar(String word) {
 		if(word.length() <= 0)
 			return "";
 		else if(word.length() == 1)
@@ -26,5 +44,6 @@ public class Problem2 {
 		return minChar(word);
 			
 	}
+	 * */
 
 }
