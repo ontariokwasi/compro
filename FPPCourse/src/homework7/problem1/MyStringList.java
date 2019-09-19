@@ -1,4 +1,4 @@
-package homework7;
+package homework7.problem1;
 
 public class MyStringList {
 	private final int INITIAL_LENGTH = 4;
