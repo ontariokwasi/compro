@@ -54,6 +54,7 @@ public class TestRun {
 		// System.out.println(merge(null, "ac"));
 		// System.out.println(minChar("james", 0, 4));
 		// System.out.println("check:" + "".charAt(0));
+		System.out.println();
 	}
 
 	public static int binarySearch(int[] a, int first_pos, int last_pos, int key) {
