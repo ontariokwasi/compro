@@ -16,8 +16,20 @@ public class EmployeeInfo {
 	 * instance if the two instances have the same name and salary.
 	 */
 	public static List<Employee> removeDuplicates(List<Employee> employees) {
-		//IMPLEMENT
-		return new ArrayList<Employee>();
+		List<Employee> noduplicates = new ArrayList<Employee>();
+		
+		for(Employee employee : employees) {
+			boolean isunique = true;
+			for(Employee emp : noduplicates) {
+				if(employee.equals(emp)) {
+					isunique = false;
+					break;
+				}
+			}
+			if(isunique)
+				noduplicates.add(employee);
+		}
+		return noduplicates;
 	}
 	
 	

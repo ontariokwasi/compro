@@ -1,5 +1,7 @@
 package homework11.problem2;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,7 +15,25 @@ public class EmployeeAdmin {
 	*/
 	public static List<Employee> prepareReport(HashMap<String, Employee> table, List<String> socSecNums) {
 		//IMPLEMENT
-		return null;
+		List<Employee> report = new ArrayList<Employee>();
+		socSecNums.forEach(socnum ->{
+			try {
+				if(table.get(socnum).getSalary() > 80000) {
+					report.add(table.get(socnum));
+				}
+			}
+			catch(NullPointerException e) {
+				//do nothing
+			}
+		});
+		Collections.sort(report, (e1,e2) ->{
+			Employee emp1 = (Employee)e1;
+			Employee emp2 = (Employee)e2;
+			if(emp1.getSsn().compareTo(emp2.getSsn()) > 0) return 1;
+			else 
+				return -1;
+		});
+		return report;
 		
 	}
 	
