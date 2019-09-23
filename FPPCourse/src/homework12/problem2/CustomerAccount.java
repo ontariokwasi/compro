@@ -34,6 +34,7 @@ public class CustomerAccount {
 	
 	//Test program
 	public static void main(String [] args) throws MyException {
+		try {
 		//1. Test exception from constructor // change balance from 200 to any value less than 100, say 60;
 		CustomerAccount ca = new CustomerAccount("Gideon Akomeng", "123456", 200);
 		
@@ -41,7 +42,10 @@ public class CustomerAccount {
 		ca.deposit(20);
 		
 		//3. Test withdrawal exception // change amount to anything greater than balance or balance-100 say 200; 
-		ca.Withdraw(100);
+		ca.Withdraw(10);
+		}catch(MyException ex) {
+			System.out.println("ERROR: "+ex.getMessage());
+		}
 	}
 
 }
