@@ -1,11 +1,11 @@
 package homework7.problem2;
 
-public class MList {
+public class MyStringList {
 	private final int INITIAL_LENGTH = 4;
 	private Person[] personArr;
 	private int size;
 
-	public MList() {
+	public MyStringList() {
 		personArr = new Person[INITIAL_LENGTH];
 		size = 0;
 	}
@@ -24,8 +24,9 @@ public class MList {
 
 	public boolean find(String lastName) {
 		for (Person p : personArr) {
-			if (p.getLast().equals(lastName))
-				return true;
+			if(p != null)
+				if (p.getLast().equals(lastName))
+					return true;
 		}
 		return false;
 	}
@@ -95,7 +96,7 @@ public class MList {
 				for (int i = tempIndex; i < personArr.length - 1; i++) {
 					personArr[tempIndex] = personArr[tempIndex + 1];
 				}
-				System.arraycopy(personArr, 0, newPersonArr, 0, personArr.length - 1);
+				//System.arraycopy(personArr, 0, newPersonArr, 0, personArr.length - 1);
 				--size;
 				return true;
 			}
@@ -104,19 +105,18 @@ public class MList {
 	}
 
 	public static void main(String[] args) {
-		MList mList = new MList();
-		mList.add(new Person("Sarf", "Philip", 90));
-		mList.add(new Person("John", "Doe", 90));
-		mList.add(new Person("Jow", "Spirit", 90));
-		mList.add(new Person("John", "Doe", 90));
-		mList.add(new Person("Jow", "Spirit", 90));
-		mList.add(new Person("John", "Doe", 90));
-		mList.add(new Person("Jow", "Spirit", 90));
-		mList.add(new Person("Jow", "Spirit", 90));
-
-		System.out.println(mList.remove("Sarf"));
-
-		System.out.println(mList);
+		MyStringList myStringList = new MyStringList();
+		myStringList.add(new Person("Akomeng", "Gideon", 26));
+		myStringList.add(new Person("Adesina", "Adeoye", 27));
+		myStringList.add(new Person("Sarfo", "Philip", 25));
+		myStringList.add(new Person("Prince", "Dawson", 19));
+		myStringList.add(new Person("Michael", "Ams", 31));
+		
+		System.out.println(myStringList.find("Akomeng"));
+		System.out.println(myStringList.remove("Akomeng"));
+		System.out.println(myStringList.find("Akomeng"));
+		System.out.println(myStringList.size());
+		//System.out.println(mList);
 	}
 
 }

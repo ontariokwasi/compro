@@ -20,6 +20,7 @@ public class ArrayStack implements Stack1 {
 	public Object pop() {
 		DNode n = top;
 		top = n.previous;
+		top.next = null;
 		return n.data;
 	}
 

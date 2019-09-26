@@ -112,10 +112,10 @@ public class MyStringLinkedList {
 		if (n != null) {
 			if (n.next == null)
 				System.out.println(n.toString());
-
-			System.out.println(n.toString());
-
-			print(n.next);
+			else {
+				System.out.println(n.toString());	
+				print(n.next);
+			}
 		}
 
 	}

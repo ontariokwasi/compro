@@ -59,7 +59,7 @@ public class MyDate {
 				new MyDate(day1, month1, year1);
 				break;
 			case 3:
-				System.out.println("Choice: 3\nEnter Day of Year:");
+				System.out.println("Choice: \nEnter Day of Year:");
 				int doy = sc.nextInt();
 				System.out.println("Enter Year:");
 				int year2 = sc.nextInt();
