@@ -75,22 +75,25 @@ public class Marketing {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		List<Marketing> marketingList = new ArrayList<>();
-		marketingList.add(new Marketing("Philip Sarfo","Hp Laptop",9.0));
-		marketingList.add(new Marketing("Bill Gates","Lenovo",90.9));
-		marketingList.add(new Marketing("Zullu Kafka","Dell",23390.0));
-		
-		marketingList.remove(new Marketing("Zullu Kafka","Dell",90.0));
-		
+		List<Marketing> marketingList = new ArrayList<Marketing>();
+		marketingList.add(new Marketing("Gideon","macbookPro",1700.0));
+		marketingList.add(new Marketing("Philip","mouse",100.5));
+		marketingList.add(new Marketing("Edward","iMac",1010.5));
+		marketingList.add(new Marketing("Gideon","macbookAir",1700.0));
 		System.out.println(marketingList.size());
 		
 		//Sales amount sorting
-		Collections.sort(marketingList,(salesAmt1,salesAmt2)->{
-			return salesAmt1.getSalesAmount().compareTo(salesAmt2.getSalesAmount());
+		Collections.sort(marketingList,(emp1,emp2)->{
+			 if(emp1.getSalesAmount().compareTo(emp2.getSalesAmount()) != 0)
+				 return emp1.getSalesAmount().compareTo(emp2.getSalesAmount());
+			 if(emp1.getEmployeeName().compareTo(emp2.getEmployeeName()) != 0)
+				 return emp1.getSalesAmount().compareTo(emp2.getSalesAmount());
+			 else
+				 return emp1.getProductName().compareTo(emp2.getProductName());
 		});
 		
-		
-		System.out.println(listMoreThan1000(marketingList));
+		System.out.println("AmountSortConsistWithEquals:\n"+marketingList);
+		System.out.println("\nNameSortMoreThan1000:\n"+listMoreThan1000(marketingList));
 		
 
 	}
