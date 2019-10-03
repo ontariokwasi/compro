@@ -1,7 +1,5 @@
 package lab3.prob3B;
 
-import lab3.prob3A.Cylinder;
-
 public class Circle {
 	private double radius;
 	public Circle(double radius) {

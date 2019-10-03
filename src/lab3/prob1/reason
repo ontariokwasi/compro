@@ -1,0 +1,2 @@
+False: because at runtime p1 is a type of PersonWithJob but p2 is a type of Person. Since Person is not an instance of PersonWithJob the equals method returns false;
+True because p1 is an instance of Person and p2 is also an instance of person and they both have the same name "Joe" so the equals method of Person class returns true.
