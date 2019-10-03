@@ -1,0 +1,2 @@
+It doesn't make sense to use an inheritance here because naturally circle is not a cylinder (there is IS-A relationship).
+A circle cannot be subtituted with a cylinder and a circle doesn't need a height because circles don't have height.
