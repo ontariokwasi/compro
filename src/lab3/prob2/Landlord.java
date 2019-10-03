@@ -1,40 +1,45 @@
 package lab3.prob2;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Landlord {
-	List<Building> b;
-	
-	public Landlord() {
-		b = null;
-	}
-	Landlord(List<Building> b){
-		this.b = b;
+
+	public static void main(String[] args) {
+		// assume the landlord has 3 buildings
+		Building b1 = new Building();
+		Building b2 = new Building();
+		Building b3 = new Building();
+		
+		// buiding1 has 4 apartments
+		b1.addApartment(1000);
+		b1.addApartment(1200);
+		b1.addApartment(1300);
+		b1.addApartment(1400);
+
+		// buiding2 has 3 apartments
+		b2.addApartment(1500);
+		b2.addApartment(1400);
+		b2.addApartment(1300);
+
+		// buiding2 has 2 apartments
+		b3.addApartment(2500);
+		b3.addApartment(2400);
+		
+		//set each building's maintenance cost
+		b1.setMaintainance(2500);
+		b2.setMaintainance(2000);
+		b3.setMaintainance(1500);
+		
+		//all buildings
+		Building[] buildings = {b1,b2,b3};
+		double totalIncome = 0.0;
+		double totalMaintenanceCost = 0.0;
+		for(Building b : buildings) {
+			totalIncome += b.getTotalRent();
+			totalMaintenanceCost += b.getMaintainance();
+		}
+		double profit = totalIncome-totalMaintenanceCost;
+		System.out.println("Landlord's Total Income: "+totalIncome);
+		System.out.println("Landlord's Total Profit: "+profit);
+		
 	}
 
-	public static void main(String []args) {
-		Apartment a1 = new Apartment(1000);
-		Apartment a2 = new Apartment(2000);
-		Apartment a3 = new Apartment(3000);
-		Apartment a4 = new Apartment(4000);
-		List<Apartment> s = new ArrayList<>();
-		s.add(a1);
-		s.add(a2);
-		s.add(a3);
-		s.add(a4);
-		Building b1 = new Building(450,s);
-		Landlord l = new Landlord(new ArrayList<>());
-		l.b.add(b1);
-		System.out.println(l.getProfit());
-	}
-	public double getProfit() {
-		if (this.b == null)
-			return 0.0;
-		double profit = 0;
-		for (Building b1: this.b) {
-			profit += b1.getProfit();
-		}
-		return profit;
-	}
 }
