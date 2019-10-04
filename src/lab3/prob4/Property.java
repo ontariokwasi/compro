@@ -8,10 +8,13 @@ public abstract class Property {
 	Property(String street, String city, String state, String zip){
 		this.address = new Address(street,city,state,zip);
 	}
-	Property(){
+	/*Property(){
 		this.address = new Address();
-	}
+	}*/
 	
+	public Address getAddress() {
+		return address;
+	}
 	//method
 	public abstract double computeRent();
 }

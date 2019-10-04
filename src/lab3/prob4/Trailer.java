@@ -5,13 +5,18 @@ public class Trailer extends Property {
 	Trailer(String street, String city, String state, String zip){
 		super(street,city,state,zip);
 	}
-	Trailer(){
+	/*Trailer(){
 		super();
-	}
+	}*/
 
 	@Override
 	public double computeRent() {
 		// TODO Auto-generated method stub
 		return 500;
+	}
+	
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName()+": "+this.address;
 	}
 }

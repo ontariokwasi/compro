@@ -9,10 +9,10 @@ public class House extends Property {
 		super(street,city,state,zip);
 		this.lotSize = lotSize;
 	}
-	House(double lotSize){
+	/*House(double lotSize){
 		super();
 		this.lotSize = lotSize;		
-	}
+	}*/
 	
 	//getter
 	public double getLotSize() {
@@ -23,6 +23,11 @@ public class House extends Property {
 	public double computeRent() {
 		// TODO Auto-generated method stub
 		return 0.1 * lotSize;
+	}
+	
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName()+": "+this.address;
 	}
 	
 }

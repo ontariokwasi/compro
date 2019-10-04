@@ -9,16 +9,20 @@ public class Condo extends Property{
 		super(street,city,state,zip);
 		this.numFloors = numFloors;
 	}
-	Condo(int numFloors){
+	/*Condo(int numFloors){
 		super();
 		this.numFloors = numFloors;
-	}
+	}*/
 
 	@Override
 	public double computeRent() {
-		// TODO Auto-generated method stub
+		
 		return 400 * numFloors;
 	}
 	
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName()+": "+this.address;
+	}
 	
 }
