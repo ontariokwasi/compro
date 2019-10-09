@@ -41,11 +41,8 @@ public class Start extends Application {
 		static Color red = Color.FIREBRICK;
 	}
 
-	private static Stage[] allWindows = { 
-			LoginWindow.INSTANCE, 
-			AllMembersWindow.INSTANCE, 
-			AllBooksWindow.INSTANCE,
-			AddNewLibMemberWindow.INSTANCE};
+	private static Stage[] allWindows = { LoginWindow.INSTANCE, AllMembersWindow.INSTANCE, AllBooksWindow.INSTANCE,
+			AddNewLibMemberWindow.INSTANCE, EditLibMember.INSTANCE, AddBookWindow.INSTANCE, AddAuthorWindow.INSTANCE };
 
 	public static void hideAllWindows() {
 		primStage.hide();
@@ -84,7 +81,7 @@ public class Start extends Application {
 		actionMenu = new Menu("Actions");
 		userMenu = new Menu("User");
 		login = new MenuItem("Login");
-		logout = new MenuItem("Logout");
+		logout = new MenuItem("Close");
 		addMember = new MenuItem("Add Member");
 		editMember = new MenuItem("Edit Member");
 		addBook = new MenuItem("Add Book");
@@ -147,19 +144,37 @@ public class Start extends Application {
 		// actionListener for logout
 		logout.setOnAction(e -> {
 			// disable view and action menus
-			viewMenu.setDisable(true);
-			actionMenu.setDisable(true);
-			userMenu.getItems().set(1, login);
-			userMenu.getItems().remove(0);
+			/*
+			 * viewMenu.setDisable(true); actionMenu.setDisable(true);
+			 * userMenu.getItems().set(1, login); userMenu.getItems().remove(0);
+			 */
+			hideAllWindows();
 		});
-		//actionListener for addmember
+		// actionListener for addmember
 		addMember.setOnAction(e -> {
 			hideAllWindows();
-			if(!AddNewLibMemberWindow.INSTANCE.isInitialized()) {
+			if (!AddNewLibMemberWindow.INSTANCE.isInitialized()) {
 				AddNewLibMemberWindow.INSTANCE.init();
 			}
 			AddNewLibMemberWindow.INSTANCE.show();
 		});
+
+		editMember.setOnAction(e -> {
+			hideAllWindows();
+			if (!EditLibMember.INSTANCE.isInitialized()) {
+				EditLibMember.INSTANCE.init();
+			}
+			EditLibMember.INSTANCE.show();
+		});
+		
+		addBook.setOnAction(e -> {
+			hideAllWindows();
+			if (!AddBookWindow.INSTANCE.isInitialized()) {
+				AddBookWindow.INSTANCE.init();
+			}
+			AddBookWindow.INSTANCE.show();
+		});
+
 		viewMenu.getItems().addAll(bookIds, memberIds);
 		actionMenu.getItems().addAll(addMember, editMember, addBook, checkout, checkin);
 		userMenu.getItems().add(login);

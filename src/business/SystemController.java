@@ -42,5 +42,11 @@ public class SystemController implements ControllerInterface {
 		return retval;
 	}
 	
+	//getMember
+	public static LibraryMember getMember(String memberID) {
+		DataAccess da = new DataAccessFacade();
+		return da.readMemberMap().get(memberID);
+	}
+	
 	
 }

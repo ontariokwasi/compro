@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="577.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AddAuthorWindow">
+   <children>
+      <Text layoutX="33.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Author">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="27.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" AnchorPane.leftAnchor="27.0" />
+      <Text layoutX="28.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" AnchorPane.leftAnchor="28.0" />
+      <Text layoutX="29.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone" AnchorPane.leftAnchor="29.0" />
+      <Text layoutX="30.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Street" AnchorPane.leftAnchor="30.0" />
+      <Text layoutX="30.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City" AnchorPane.leftAnchor="30.0" />
+      <Text layoutX="26.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State" AnchorPane.leftAnchor="26.0" />
+      <Text layoutX="32.0" layoutY="487.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zip" AnchorPane.leftAnchor="32.0" />
+      <ComboBox fx:id="cboCredential" layoutX="194.0" layoutY="207.0" prefWidth="150.0" />
+      <TextField fx:id="txtFirstName" layoutX="194.0" layoutY="74.0" prefHeight="27.0" prefWidth="230.0" AnchorPane.leftAnchor="194.0" />
+      <TextField fx:id="txtLastName" layoutX="194.0" layoutY="121.0" prefHeight="27.0" prefWidth="230.0" AnchorPane.leftAnchor="194.0" />
+      <TextField fx:id="txtPhone" layoutX="194.0" layoutY="161.0" AnchorPane.leftAnchor="194.0" />
+      <TextField fx:id="txtStreet" layoutX="195.0" layoutY="349.0" prefHeight="27.0" prefWidth="272.0" AnchorPane.leftAnchor="195.0" />
+      <TextField fx:id="txtCity" layoutX="194.0" layoutY="388.0" AnchorPane.leftAnchor="194.0" />
+      <TextField fx:id="txtState" layoutX="194.0" layoutY="431.0" AnchorPane.leftAnchor="194.0" />
+      <TextField fx:id="txtZip" layoutX="194.0" layoutY="469.0" AnchorPane.leftAnchor="194.0" />
+      <Button fx:id="btnCancel" layoutX="193.0" layoutY="537.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="105.0" snapToPixel="false" text="Cancel" AnchorPane.leftAnchor="193.0">
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+      </Button>
+      <Button fx:id="btnAdd" layoutX="390.0" layoutY="537.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="105.0" snapToPixel="false" text="Add" AnchorPane.leftAnchor="390.0">
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+      </Button>
+      <Text layoutX="29.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Credentials" />
+      <Text layoutX="38.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bio" />
+      <TextArea fx:id="txaBio" layoutX="195.0" layoutY="254.0" prefHeight="74.0" prefWidth="278.0" />
+   </children>
+</AnchorPane>

@@ -1,14 +1,13 @@
 package ui;
 
 import java.io.IOException;
-import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-
 import business.Address;
+import business.ControllerInterface;
 import business.LibraryMember;
-import dataaccess.Auth;
-import dataaccess.DataAccessFacade;
+import business.Person;
+import business.SystemController;
 import dataaccess.TestData;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
@@ -20,10 +19,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class AddNewLibMemberWindow extends Stage implements LibWindow {
+public class EditLibMember extends Stage implements LibWindow {
+
 	// fields
-	//@FXML
-	//private ComboBox<String> cboType;
+	@FXML
+	private ComboBox<String> cboType;
 	@FXML
 	private TextField txtFirstName;
 	@FXML
@@ -51,10 +51,10 @@ public class AddNewLibMemberWindow extends Stage implements LibWindow {
 		Start.primStage().show();
 	}
 
-	public void addMember(ActionEvent e) {
+	public void editMember(ActionEvent e) {
 		try {
 
-			//String userType = cboType.getSelectionModel().getSelectedItem();
+			String memberID = cboType.getSelectionModel().getSelectedItem();
 			String firstName = txtFirstName.getText().trim();
 			String lastName = txtLastName.getText().trim();
 			String phone = txtPhone.getText().trim();
@@ -62,19 +62,19 @@ public class AddNewLibMemberWindow extends Stage implements LibWindow {
 			String city = txtCity.getText().trim();
 			String state = txtState.getText().trim();
 			String zip = txtZip.getText().trim();
-			String[] values = {firstName, lastName, phone, street, city, state, zip };
+			String[] values = { memberID, firstName, lastName, phone, street, city, state, zip };
 
 			for (String s : values) {
 				if (s.length() == 0)
 					throw new NullPointerException();
 			}
 			//
-			String memberID = TestData.createMemberID();
+			// String memberID = TestData.createMemberID();
 			LibraryMember libraryMember = new LibraryMember(memberID, firstName, lastName, phone,
 					new Address(street, city, state, zip));
 			TestData.saveMember(libraryMember);
 			Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-			successAlert.setContentText("New library member created successfully!\nYour Member ID is: "+memberID);
+			successAlert.setContentText("Library member (" + memberID + ") has been modified successfully!");
 			successAlert.setTitle("Success!");
 			successAlert.setHeaderText("");
 			successAlert.showAndWait();
@@ -92,21 +92,21 @@ public class AddNewLibMemberWindow extends Stage implements LibWindow {
 	}
 
 	//
+	@SuppressWarnings("unchecked")
 	@Override
 	public void init() {
 		Parent root = null;
 		try {
-			root = FXMLLoader.load(getClass().getResource("addNewLibMember.fxml"));
+			root = FXMLLoader.load(getClass().getResource("editLibMember.fxml"));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		//
-		/*
-		 * cboType = (ComboBox<String>) root.lookup("#cboType");
-		 * cboType.getItems().add(Auth.ADMIN.toString());
-		 * cboType.getItems().add(Auth.LIBRARIAN.toString());
-		 * cboType.getItems().add(Auth.BOTH.toString());
-		 *///
+
+		cboType = (ComboBox<String>) root.lookup("#cboType");
+		ControllerInterface ci = new SystemController();
+		List<String> ids = ci.allMemberIds();
+		Collections.sort(ids);
+		cboType.getItems().addAll(ids);
 
 		txtFirstName = (TextField) root.lookup("#txtFirstName");
 		txtLastName = (TextField) root.lookup("#txtLastName");
@@ -115,18 +115,34 @@ public class AddNewLibMemberWindow extends Stage implements LibWindow {
 		txtCity = (TextField) root.lookup("#txtCity");
 		txtState = (TextField) root.lookup("#txtState");
 		txtZip = (TextField) root.lookup("#txtZip");
-		//
 		btnAdd = (Button) root.lookup("#btnAdd");
+		//On memberID selected Action Listener
+		cboType.setOnAction(e ->{
+			String id = cboType.getSelectionModel().getSelectedItem();
+			//System.out.println(SystemController.getMember(id));
+			Person libMember = (Person) SystemController.getMember(id);
+			
+			txtFirstName.setText(libMember.getFirstName());
+			txtLastName.setText(libMember.getLastName()); 
+			txtPhone.setText(libMember.getTelephone());
+			Address libMemberAdd = libMember.getAddress();
+			txtStreet.setText(libMemberAdd.getStreet());
+			txtCity.setText(libMemberAdd.getCity());
+			txtState.setText(libMemberAdd.getState()); 
+			txtZip.setText(libMemberAdd.getZip());
+		});
+		//editMember Action Listener
 		btnAdd.setOnAction(e -> {
 			//
-			addMember(e);
+			editMember(e);
 		});
+		
 		Scene scene = new Scene(root);
 		setScene(scene);
 
 	}
 
-	public static final AddNewLibMemberWindow INSTANCE = new AddNewLibMemberWindow();
+	public static final EditLibMember INSTANCE = new EditLibMember();
 
 	private boolean isInitialized = false;
 

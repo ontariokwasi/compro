@@ -93,30 +93,39 @@ public class LoginWindow extends Stage implements LibWindow {
 				try {
 					ControllerInterface c = new SystemController();
 					c.login(userTextField.getText().trim(), pwBox.getText().trim());
-					/*messageBar.setFill(Start.Colors.green);
-					messageBar.setText("Login successful");*/
-					
-					//check which user is logged in and give the necessary privileges;
+					/*
+					 * messageBar.setFill(Start.Colors.green);
+					 * messageBar.setText("Login successful");
+					 */
+
+					// check which user is logged in and give the necessary privileges;
 					Auth authid = SystemController.currentAuth;
-					List<MenuItem> removefromMenuitems = new ArrayList<MenuItem>();
-					if(authid.equals(Auth.LIBRARIAN)) {
-						 removefromMenuitems.add(Start.addBook);
-						 removefromMenuitems.add(Start.addMember);
-						 removefromMenuitems.add(Start.editMember);
+					List<MenuItem> addMenuitems = new ArrayList<MenuItem>();
+					if (authid.equals(Auth.LIBRARIAN)) {
+
+						addMenuitems.add(Start.checkout);
+						addMenuitems.add(Start.checkin);
+					} else if (authid.equals(Auth.ADMIN)) {
+						addMenuitems.add(Start.addBook);
+						addMenuitems.add(Start.addMember);
+						addMenuitems.add(Start.editMember);
+					} else {
+						addMenuitems.add(Start.addBook);
+						addMenuitems.add(Start.addMember);
+						addMenuitems.add(Start.editMember);
+						addMenuitems.add(Start.checkout);
+						addMenuitems.add(Start.checkin);
 					}
-					else if(authid.equals(Auth.ADMIN)) {
-						removefromMenuitems.add(Start.checkout);
-						removefromMenuitems.add(Start.checkin);
-					}
-					Start.actionMenu.getItems().removeAll(removefromMenuitems);
-					Start.userMenu.getItems().add(0, new MenuItem(authid+"("+userTextField.getText().trim()+")"));
+					Start.actionMenu.getItems().clear();
+					Start.actionMenu.getItems().addAll(addMenuitems);
+					Start.userMenu.getItems().add(0, new MenuItem(authid + "(" + userTextField.getText().trim() + ")"));
 					Start.userMenu.getItems().set(1, Start.logout);
 					Start.viewMenu.setDisable(false);
 					Start.actionMenu.setDisable(false);
-					//close login and open start window
+					// close login and open start window
 					Start.hideAllWindows();
 					Start.primStage().show();
-					
+
 				} catch (LoginException ex) {
 					messageBar.setFill(Start.Colors.red);
 					messageBar.setText("Error! " + ex.getMessage());
