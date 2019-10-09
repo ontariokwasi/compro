@@ -3,6 +3,8 @@ package business;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import business.Book;
 import dataaccess.Auth;
@@ -48,5 +50,23 @@ public class SystemController implements ControllerInterface {
 		return da.readMemberMap().get(memberID);
 	}
 	
+	//generate memberID
+	public static String createMemberID() {
+		DataAccessFacade readMember = new DataAccessFacade();
+		Set<String> keys = readMember.readMemberMap().keySet();
+		TreeSet<String> memberIDs = new TreeSet<String>();
+		memberIDs.addAll(keys);
+		int newID = Integer.parseInt(memberIDs.last()) + 1;
+		return newID + "";
+	}
+	
+	//get all authors
+	public static List<Author> allAuthors() {
+		DataAccess da = new DataAccessFacade();
+		List<Author> authors = new ArrayList<>();
+		List<Book> books = new ArrayList<Book>(da.readBooksMap().values());
+		books.forEach(book -> authors.addAll(book.getAuthors()));
+		return authors;
+	}
 	
 }

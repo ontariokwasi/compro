@@ -6,9 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-import business.Address;
 import business.Author;
 import business.Book;
+import business.SystemController;
 import dataaccess.TestData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,7 +37,7 @@ public class AddBookWindow extends Stage implements LibWindow {
 	@FXML
 	private Button btnAddNewAuthor;
 	@FXML
-	private TextField txtAvailability;
+	private ComboBox<Integer> cbocheckoutcopy;
 	@FXML
 	private TextField txtCopies;
 	@FXML
@@ -50,6 +50,7 @@ public class AddBookWindow extends Stage implements LibWindow {
 	public static Alert alert;
 
 	private boolean isInitialized = false;
+	private HashMap<String, Author> allAuthors;
 
 	@Override
 	public boolean isInitialized() {
@@ -77,7 +78,7 @@ public class AddBookWindow extends Stage implements LibWindow {
 		cboAuthors = (ComboBox<String>) root.lookup("#cboAuthors");
 		txaAuthorListDisplay = (TextArea) root.lookup("#txaAuthorListDisplay");
 		btnAddNewAuthor = (Button) root.lookup("#btnAddNewAuthor");
-		txtAvailability = (TextField) root.lookup("#txtAvailability");
+		cbocheckoutcopy = (ComboBox<Integer>) root.lookup("#cbocheckoutcopy");
 		txtCopies = (TextField) root.lookup("#txtCopies");
 		btnAdd = (Button) root.lookup("#btnAdd");
 		btnCancel = (Button) root.lookup("#btnCancel");
@@ -107,14 +108,44 @@ public class AddBookWindow extends Stage implements LibWindow {
 		
 		btnAdd.setOnAction(e -> addBook(e));
 		
+		//set number of days the book can be checkedOut 
+		cbocheckoutcopy.getItems().add(7);
+		cbocheckoutcopy.getItems().add(21);
+		
+		//set Authors
+		setAuthors(SystemController.allAuthors());
+		
+		//on selected Author
+		cboAuthors.setOnAction(e -> {
+			String author = cboAuthors.getSelectionModel().getSelectedItem();
+			//add author to view
+			txaAuthorListDisplay.setText(txaAuthorListDisplay.getText()+"\n"+author);
+			//add author to selected list
+			AddBookWindow.authors.put(author, allAuthors.get(author));
+			setAuthors(author);
+		});
 		Scene scene = new Scene(root);
 		setScene(scene);
+	}
+	
+	//set authors method
+	public void setAuthors(List<Author> authors) {
+		allAuthors = new HashMap<String, Author>();
+		authors.forEach(author -> {
+			allAuthors.put(author.getFirstName()+" "+author.getLastName(), author);
+			});
+		cboAuthors.getItems().addAll(allAuthors.keySet());
+	}
+	
+	public void setAuthors(String removeAuthor) {
+		allAuthors.remove(removeAuthor);
+		cboAuthors.getItems().addAll(allAuthors.keySet());
 	}
 	
 	public void addBook(ActionEvent e) {
 		try {
 
-			String authors = cboAuthors.getSelectionModel().getSelectedItem();
+			int numcheckout = cbocheckoutcopy.getSelectionModel().getSelectedItem();
 			String title = txtTitle.getText().trim();
 			String isbn = txtIsbn.getText().trim();
 			String authorlist = txaAuthorListDisplay.getText().trim();
@@ -126,7 +157,7 @@ public class AddBookWindow extends Stage implements LibWindow {
 			int copies = Integer.parseInt(numCopy);
 			List<Author> bookAuthors = new ArrayList<Author>();
 			bookAuthors.addAll(AddBookWindow.authors.values());
-			Book book = new Book(isbn, title, 7, bookAuthors);
+			Book book = new Book(isbn, title, numcheckout, bookAuthors);
 			for(int i = 0; i < copies; i++)
 				book.addCopy();
 			TestData.saveBook(book);
@@ -141,7 +172,7 @@ public class AddBookWindow extends Stage implements LibWindow {
 
 		} catch (NullPointerException | NumberFormatException ex) {
 			String msg = ex.getMessage();
-			if(ex.getClass().getSimpleName() == "NumberFormatException")
+			if(ex.getClass().getSimpleName().equals("NumberFormatException"))
 				msg = "Book copies should be a number";
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setContentText(msg);

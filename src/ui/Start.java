@@ -42,7 +42,8 @@ public class Start extends Application {
 	}
 
 	private static Stage[] allWindows = { LoginWindow.INSTANCE, AllMembersWindow.INSTANCE, AllBooksWindow.INSTANCE,
-			AddNewLibMemberWindow.INSTANCE, EditLibMember.INSTANCE, AddBookWindow.INSTANCE, AddAuthorWindow.INSTANCE };
+			AddNewLibMemberWindow.INSTANCE, EditLibMember.INSTANCE, AddBookWindow.INSTANCE, AddAuthorWindow.INSTANCE,
+			CheckoutBookWindow.INSTANCE };
 
 	public static void hideAllWindows() {
 		primStage.hide();
@@ -166,13 +167,21 @@ public class Start extends Application {
 			}
 			EditLibMember.INSTANCE.show();
 		});
-		
+
 		addBook.setOnAction(e -> {
 			hideAllWindows();
 			if (!AddBookWindow.INSTANCE.isInitialized()) {
 				AddBookWindow.INSTANCE.init();
 			}
 			AddBookWindow.INSTANCE.show();
+		});
+		
+		checkout.setOnAction(e -> {
+			hideAllWindows();
+			if (!CheckoutBookWindow.INSTANCE.isInitialized()) {
+				CheckoutBookWindow.INSTANCE.init();
+			}
+			CheckoutBookWindow.INSTANCE.show();
 		});
 
 		viewMenu.getItems().addAll(bookIds, memberIds);

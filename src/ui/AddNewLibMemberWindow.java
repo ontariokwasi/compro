@@ -7,6 +7,7 @@ import java.util.List;
 
 import business.Address;
 import business.LibraryMember;
+import business.SystemController;
 import dataaccess.Auth;
 import dataaccess.DataAccessFacade;
 import dataaccess.TestData;
@@ -69,7 +70,7 @@ public class AddNewLibMemberWindow extends Stage implements LibWindow {
 					throw new NullPointerException();
 			}
 			//
-			String memberID = TestData.createMemberID();
+			String memberID = SystemController.createMemberID();
 			LibraryMember libraryMember = new LibraryMember(memberID, firstName, lastName, phone,
 					new Address(street, city, state, zip));
 			TestData.saveMember(libraryMember);

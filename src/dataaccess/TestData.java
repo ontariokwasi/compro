@@ -112,14 +112,7 @@ public class TestData {
 
 	}
 
-	public static String createMemberID() {
-		DataAccessFacade readMember = new DataAccessFacade();
-		Set<String> keys = readMember.readMemberMap().keySet();
-		TreeSet<String> memberIDs = new TreeSet<String>();
-		memberIDs.addAll(keys);
-		int newID = Integer.parseInt(memberIDs.last()) + 1;
-		return newID + "";
-	}
+	
 	
 	public static void saveBook(Book book) {
 		DataAccessFacade readbook = new DataAccessFacade();
