@@ -118,7 +118,10 @@ public class AddAuthorWindow extends Stage implements LibWindow{
 					throw new NullPointerException();
 			}
 			String key = firstName+" "+lastName;
-			AddBookWindow.authors.put(key, new Author(firstName, lastName, phone, new Address(street, city, state, zip), txaBio));
+			Author auth = new Author(firstName, lastName, phone, new Address(street, city, state, zip), txaBio);
+			if(credentials.equalsIgnoreCase("Yes"))
+				auth.setCredential(true);
+			AddBookWindow.authors.put(key, auth);
 			System.out.println("FromAU: "+AddBookWindow.authors);
 			//Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION, "", ButtonType.YES, ButtonType.NO);
 			

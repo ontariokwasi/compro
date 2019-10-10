@@ -10,6 +10,7 @@ public class CheckoutRecord implements Serializable{
 	private static final long serialVersionUID = -4341858268173253319L;
 	private String isbn;
 	private int copynum;
+	private BookCopy bookCopy;
 	private LocalDate checkoutdate, duedate;
 	
 	public CheckoutRecord(String isbn, int copynum, LocalDate checkoutdate, LocalDate duedate) {
@@ -18,6 +19,11 @@ public class CheckoutRecord implements Serializable{
 		this.copynum = copynum;
 		this.checkoutdate = checkoutdate;
 		this.duedate = duedate;
+		bookCopy = SystemController.getBook(isbn).getCopy(copynum);
+	}
+
+	public BookCopy getBookCopy() {
+		return bookCopy;
 	}
 
 	@Override
