@@ -10,14 +10,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -34,7 +31,7 @@ public class Start extends Application {
 
 	private static Stage primStage = null;
 	public static Menu viewMenu, actionMenu, userMenu;
-	public static MenuItem login, logout, addMember, editMember, addBook, addBookCopy, checkout, checkin, memRecord;
+	public static MenuItem login, logout, addMember, editMember, addBook, addBookCopy, checkout, checkin, memRecord, overdue;
 
 	public static Stage primStage() {
 		return primStage;
@@ -47,7 +44,7 @@ public class Start extends Application {
 
 	private static Stage[] allWindows = { LoginWindow.INSTANCE, AllMembersWindow.INSTANCE, AllBooksWindow.INSTANCE,
 			AddNewLibMemberWindow.INSTANCE, EditLibMember.INSTANCE, AddBookWindow.INSTANCE, AddAuthorWindow.INSTANCE,
-			CheckoutBookWindow.INSTANCE, AddBookCopyWindow.INSTANCE };
+			CheckoutBookWindow.INSTANCE, AddBookCopyWindow.INSTANCE, OverdueCopyWindow.INSTANCE };
 
 	public static void hideAllWindows() {
 		primStage.hide();
@@ -94,6 +91,7 @@ public class Start extends Application {
 		checkout = new MenuItem("CheckOut");
 		checkin = new MenuItem("CheckIn");
 		memRecord = new MenuItem("Member Record");
+		overdue = new MenuItem("Overdue Checkouts");
 
 		login.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -188,7 +186,7 @@ public class Start extends Application {
 			}
 			AddBookCopyWindow.INSTANCE.show();
 		});
-		
+
 		checkout.setOnAction(e -> {
 			hideAllWindows();
 			if (!CheckoutBookWindow.INSTANCE.isInitialized()) {
@@ -196,20 +194,30 @@ public class Start extends Application {
 			}
 			CheckoutBookWindow.INSTANCE.show();
 		});
-		
+
 		memRecord.setOnAction(e -> {
-			Alert alert = new Alert(AlertType.CONFIRMATION, "Enter member ID");
-			alert.setHeaderText("");
-			alert.setTitle("Member ID");
-			alert.showAndWait();
-			ButtonType result = alert.getResult();
-			if(result.getButtonData().equals(ButtonData.OK_DONE)) {
-				String memberid = alert.getContentText();
-				System.out.println(memberid);
+			TextInputDialog inputDialog = new TextInputDialog();
+			inputDialog.setHeaderText("");
+			inputDialog.setTitle("Member ID");
+			inputDialog.setContentText("Enter member ID ");
+			inputDialog.showAndWait();
+			String result = inputDialog.getResult();
+			if (result != null) {
+				String memberid = inputDialog.getEditor().getText().trim();
+				SystemController.getMember(memberid).getCheckoutRecord()
+						.forEach(rec -> System.out.println("Member(" + memberid + ")=> " + rec));
 			}
 		});
+		
+		overdue.setOnAction(e -> {
+			hideAllWindows();
+			if (!OverdueCopyWindow.INSTANCE.isInitialized()) {
+				OverdueCopyWindow.INSTANCE.init();
+			}
+			OverdueCopyWindow.INSTANCE.show();
+		});
 
-		viewMenu.getItems().addAll(bookIds, memberIds, memRecord);
+		viewMenu.getItems().addAll(bookIds, memberIds, memRecord, overdue);
 		actionMenu.getItems().addAll(addMember, editMember, addBook, checkout, checkin);
 		userMenu.getItems().add(login);
 		// add to main menu

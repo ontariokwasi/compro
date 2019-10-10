@@ -104,7 +104,8 @@ public class SystemController implements ControllerInterface {
 		return authors;
 	}
 
-	public List<CheckoutRecord> getCheckoutRecord(String LibraryMemberId) {
+	// get all Checkout records for a member
+	public static List<CheckoutRecord> getCheckoutRecord(String LibraryMemberId) {
 		LibraryMember lm = getMember(LibraryMemberId);
 		if (lm == null)
 			return null;
@@ -114,26 +115,28 @@ public class SystemController implements ControllerInterface {
 	}
 
 	// check if record is overdue
-	public boolean isOverdue(CheckoutRecord rec) {
-		if (rec.getDuedate().isBefore(LocalDate.now()))
-			return true;
-		return false;
-
+	public static boolean isOverdue(CheckoutRecord rec) {
+		return rec.getDuedate().isBefore(LocalDate.now().plusDays(22));
+		//return rec.getDuedate().isBefore(LocalDate.now().plusDays(22));
 	}
 
-	// get all overdue records
-	public List<CheckoutRecord> OverdueRecords(String isbn) {
+	// get all overdue records for a book
+	public static HashMap<String, CheckoutRecord> getOverdueRecords(String isbn) {
 		HashMap<String, LibraryMember> members = getAllMembers();
-		List<CheckoutRecord> cr = new ArrayList<>();
+		HashMap<String, CheckoutRecord> cr = new HashMap<String, CheckoutRecord>();
 		members.forEach((id, member) -> {
-			member.getCheckoutRecord().forEach(rec -> {
-				if (rec.getIsbn().equals(isbn) && isOverdue(rec)) {
-					Book b = getBook(isbn);
-					if (!b.getCopy(rec.getCopynum()).isAvailable()) {
-						cr.add(rec);
+			try {
+				member.getCheckoutRecord().forEach(rec -> {
+					if (rec.getIsbn().equals(isbn) && isOverdue(rec)) {
+						Book b = getBook(isbn);
+						if (!b.getCopy(rec.getCopynum()).isAvailable()) {
+							cr.put(id, rec);
+						}
 					}
-				}
-			});
+				});
+			} catch (NullPointerException ex) {
+					//ex.printStackTrace();
+			}
 		});
 
 		return cr;
