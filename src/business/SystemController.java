@@ -50,6 +50,32 @@ public class SystemController implements ControllerInterface {
 		return da.readMemberMap().get(memberID);
 	}
 	
+	//find book
+	public static boolean findbook(String isbn) {
+		return new SystemController().allBookIds().contains(isbn);
+	}
+	
+	//get book
+	public static Book getBook(String isbn) {
+		DataAccess da = new DataAccessFacade();
+		return da.readBooksMap().get(isbn);
+	}
+	
+	//Book has availablecopy
+	public static boolean hasAvailableCopy(Book book) {
+		for(BookCopy bc : book.getCopies())
+			if(bc.isAvailable())
+				return true;
+		return false;
+	}
+	
+	//Book has availablecopy
+	public static BookCopy getAvailableCopy(Book book) {
+		for(BookCopy bc : book.getCopies())
+			if(bc.isAvailable())
+				return bc;
+		return null;
+	}
 	//generate memberID
 	public static String createMemberID() {
 		DataAccessFacade readMember = new DataAccessFacade();

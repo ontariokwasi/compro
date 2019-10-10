@@ -107,10 +107,12 @@ public class LoginWindow extends Stage implements LibWindow {
 						addMenuitems.add(Start.checkin);
 					} else if (authid.equals(Auth.ADMIN)) {
 						addMenuitems.add(Start.addBook);
+						addMenuitems.add(Start.addBookCopy);
 						addMenuitems.add(Start.addMember);
 						addMenuitems.add(Start.editMember);
 					} else {
 						addMenuitems.add(Start.addBook);
+						addMenuitems.add(Start.addBookCopy);
 						addMenuitems.add(Start.addMember);
 						addMenuitems.add(Start.editMember);
 						addMenuitems.add(Start.checkout);

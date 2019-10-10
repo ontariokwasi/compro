@@ -30,7 +30,7 @@ public class Start extends Application {
 
 	private static Stage primStage = null;
 	public static Menu viewMenu, actionMenu, userMenu;
-	public static MenuItem login, logout, addMember, editMember, addBook, checkout, checkin;
+	public static MenuItem login, logout, addMember, editMember, addBook, addBookCopy, checkout, checkin;
 
 	public static Stage primStage() {
 		return primStage;
@@ -43,7 +43,7 @@ public class Start extends Application {
 
 	private static Stage[] allWindows = { LoginWindow.INSTANCE, AllMembersWindow.INSTANCE, AllBooksWindow.INSTANCE,
 			AddNewLibMemberWindow.INSTANCE, EditLibMember.INSTANCE, AddBookWindow.INSTANCE, AddAuthorWindow.INSTANCE,
-			CheckoutBookWindow.INSTANCE };
+			CheckoutBookWindow.INSTANCE, AddBookCopyWindow.INSTANCE };
 
 	public static void hideAllWindows() {
 		primStage.hide();
@@ -86,6 +86,7 @@ public class Start extends Application {
 		addMember = new MenuItem("Add Member");
 		editMember = new MenuItem("Edit Member");
 		addBook = new MenuItem("Add Book");
+		addBookCopy = new MenuItem("Add Book Copy");
 		checkout = new MenuItem("CheckOut");
 		checkin = new MenuItem("CheckIn");
 
@@ -174,6 +175,13 @@ public class Start extends Application {
 				AddBookWindow.INSTANCE.init();
 			}
 			AddBookWindow.INSTANCE.show();
+		});
+		addBookCopy.setOnAction(e -> {
+			hideAllWindows();
+			if (!AddBookCopyWindow.INSTANCE.isInitialized()) {
+				AddBookCopyWindow.INSTANCE.init();
+			}
+			AddBookCopyWindow.INSTANCE.show();
 		});
 		
 		checkout.setOnAction(e -> {
