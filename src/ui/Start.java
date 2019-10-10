@@ -10,6 +10,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -30,7 +34,7 @@ public class Start extends Application {
 
 	private static Stage primStage = null;
 	public static Menu viewMenu, actionMenu, userMenu;
-	public static MenuItem login, logout, addMember, editMember, addBook, addBookCopy, checkout, checkin;
+	public static MenuItem login, logout, addMember, editMember, addBook, addBookCopy, checkout, checkin, memRecord;
 
 	public static Stage primStage() {
 		return primStage;
@@ -89,6 +93,7 @@ public class Start extends Application {
 		addBookCopy = new MenuItem("Add Book Copy");
 		checkout = new MenuItem("CheckOut");
 		checkin = new MenuItem("CheckIn");
+		memRecord = new MenuItem("Member Record");
 
 		login.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -191,8 +196,20 @@ public class Start extends Application {
 			}
 			CheckoutBookWindow.INSTANCE.show();
 		});
+		
+		memRecord.setOnAction(e -> {
+			Alert alert = new Alert(AlertType.CONFIRMATION, "Enter member ID");
+			alert.setHeaderText("");
+			alert.setTitle("Member ID");
+			alert.showAndWait();
+			ButtonType result = alert.getResult();
+			if(result.getButtonData().equals(ButtonData.OK_DONE)) {
+				String memberid = alert.getContentText();
+				System.out.println(memberid);
+			}
+		});
 
-		viewMenu.getItems().addAll(bookIds, memberIds);
+		viewMenu.getItems().addAll(bookIds, memberIds, memRecord);
 		actionMenu.getItems().addAll(addMember, editMember, addBook, checkout, checkin);
 		userMenu.getItems().add(login);
 		// add to main menu
