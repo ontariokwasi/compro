@@ -45,6 +45,12 @@ public class SystemController implements ControllerInterface {
 		retval.addAll(da.readBooksMap().keySet());
 		return retval;
 	}
+	
+	//get all books
+	public static HashMap<String,Book> getAllBooks() {
+		DataAccess da = new DataAccessFacade();
+		return da.readBooksMap();
+	}
 
 	// getMember
 	public static LibraryMember getMember(String memberID) {
@@ -77,13 +83,22 @@ public class SystemController implements ControllerInterface {
 		return false;
 	}
 
-	// Book has availablecopy
+	// get availablecopy
 	public static BookCopy getAvailableCopy(Book book) {
 		for (BookCopy bc : book.getCopies())
 			if (bc.isAvailable())
 				return bc;
 		return null;
 	}
+	
+	// total availablecopy
+		public static int totalAvailableCopies(Book book) {
+			int count = 0;
+			for (BookCopy bc : book.getCopies())
+				if (bc.isAvailable())
+					 count++;
+			return count;
+		}
 
 	// generate memberID
 	public static String createMemberID() {

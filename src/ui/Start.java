@@ -10,11 +10,15 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -31,7 +35,8 @@ public class Start extends Application {
 
 	private static Stage primStage = null;
 	public static Menu viewMenu, actionMenu, userMenu;
-	public static MenuItem login, logout, addMember, editMember, addBook, addBookCopy, checkout, checkin, memRecord, overdue;
+	public static MenuItem login, logout, addMember, editMember, addBook, addBookCopy, checkout, checkin, memRecord,
+			overdue;
 
 	public static Stage primStage() {
 		return primStage;
@@ -44,7 +49,8 @@ public class Start extends Application {
 
 	private static Stage[] allWindows = { LoginWindow.INSTANCE, AllMembersWindow.INSTANCE, AllBooksWindow.INSTANCE,
 			AddNewLibMemberWindow.INSTANCE, EditLibMember.INSTANCE, AddBookWindow.INSTANCE, AddAuthorWindow.INSTANCE,
-			CheckoutBookWindow.INSTANCE, AddBookCopyWindow.INSTANCE, OverdueCopyWindow.INSTANCE };
+			CheckoutBookWindow.INSTANCE, AddBookCopyWindow.INSTANCE, OverdueCopyWindow.INSTANCE,
+			ViewBooksWindow.INSTANCE };
 
 	public static void hideAllWindows() {
 		primStage.hide();
@@ -105,25 +111,18 @@ public class Start extends Application {
 			}
 		});
 
-		MenuItem bookIds = new MenuItem("All Book Ids");
-		bookIds.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				hideAllWindows();
-				if (!AllBooksWindow.INSTANCE.isInitialized()) {
-					AllBooksWindow.INSTANCE.init();
-				}
-				ControllerInterface ci = new SystemController();
-				List<String> ids = ci.allBookIds();
-				Collections.sort(ids);
-				StringBuilder sb = new StringBuilder();
-				for (String s : ids) {
-					sb.append(s + "\n");
-				}
-				AllBooksWindow.INSTANCE.setData(sb.toString());
-				AllBooksWindow.INSTANCE.show();
-			}
-		});
+		/*
+		 * MenuItem bookIds = new MenuItem("All Book Ids"); bookIds.setOnAction(new
+		 * EventHandler<ActionEvent>() {
+		 * 
+		 * @Override public void handle(ActionEvent e) { hideAllWindows(); if
+		 * (!AllBooksWindow.INSTANCE.isInitialized()) { AllBooksWindow.INSTANCE.init();
+		 * } ControllerInterface ci = new SystemController(); List<String> ids =
+		 * ci.allBookIds(); Collections.sort(ids); StringBuilder sb = new
+		 * StringBuilder(); for (String s : ids) { sb.append(s + "\n"); }
+		 * AllBooksWindow.INSTANCE.setData(sb.toString());
+		 * AllBooksWindow.INSTANCE.show(); } });
+		 */
 
 		MenuItem memberIds = new MenuItem("All Member Ids");
 		memberIds.setOnAction(new EventHandler<ActionEvent>() {
@@ -145,6 +144,16 @@ public class Start extends Application {
 				AllMembersWindow.INSTANCE.setData(sb.toString());
 				AllMembersWindow.INSTANCE.show();
 			}
+		});
+		MenuItem viewbooks = new MenuItem("All Books");
+		viewbooks.setOnAction(e -> {
+			Alert alert = new Alert(AlertType.INFORMATION, "", ButtonType.CLOSE);
+			alert.setGraphic(null);
+			alert.setHeaderText("");
+			alert.setTitle("All Books In Library");
+			ViewBooksWindow.INSTANCE.init();
+			alert.getDialogPane().setContent(ViewBooksWindow.INSTANCE.getScene().getRoot());
+			alert.showAndWait();
 		});
 		// actionListener for logout
 		logout.setOnAction(e -> {
@@ -208,7 +217,7 @@ public class Start extends Application {
 						.forEach(rec -> System.out.println("Member(" + memberid + ")=> " + rec));
 			}
 		});
-		
+
 		overdue.setOnAction(e -> {
 			hideAllWindows();
 			if (!OverdueCopyWindow.INSTANCE.isInitialized()) {
@@ -217,7 +226,7 @@ public class Start extends Application {
 			OverdueCopyWindow.INSTANCE.show();
 		});
 
-		viewMenu.getItems().addAll(bookIds, memberIds, memRecord, overdue);
+		viewMenu.getItems().addAll(viewbooks, memberIds, memRecord, overdue);
 		actionMenu.getItems().addAll(addMember, editMember, addBook, checkout, checkin);
 		userMenu.getItems().add(login);
 		// add to main menu

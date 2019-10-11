@@ -1,19 +1,14 @@
 package ui;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import business.Book;
-import business.BookCopy;
 import business.CheckoutRecord;
-import business.LibraryMember;
 import business.SystemController;
-import dataaccess.TestData;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +20,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class OverdueCopyWindow extends Stage implements LibWindow {
@@ -118,7 +112,7 @@ public class OverdueCopyWindow extends Stage implements LibWindow {
 				if (!overdueRecords.isEmpty())
 					// add records to tableview
 					overdueRecords.forEach((id, record) -> lvRecords.getItems()
-							.add(new ArrayList<String>(Arrays.asList(record.getIsbn(), title, record.getCopynum() + "",
+							.add(new ArrayList<String>(Arrays.asList(record.getIsbn(), title+"\nHello\nHi", record.getCopynum() + "",
 									id, record.getDuedate().format(DateTimeFormatter.ofPattern("MM/dd/yyy"))))));
 				else {
 					Alert alert = new Alert(AlertType.WARNING, "No overdue records found for book(" + isbn + ")");

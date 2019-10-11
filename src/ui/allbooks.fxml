@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="623.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ViewBooksWindow">
+   <children>
+      <Label layoutX="232.0" layoutY="14.0" text="All Books In Library">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TableView fx:id="lvRecords" layoutX="10.0" layoutY="45.0" prefHeight="563.0" prefWidth="622.0">
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy></TableView>
+   </children>
+</AnchorPane>
