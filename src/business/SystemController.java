@@ -131,8 +131,8 @@ public class SystemController implements ControllerInterface {
 
 	// check if record is overdue
 	public static boolean isOverdue(CheckoutRecord rec) {
-		return rec.getDuedate().isBefore(LocalDate.now().plusDays(22));
-		//return rec.getDuedate().isBefore(LocalDate.now().plusDays(22));
+		return rec.getDuedate().isBefore(LocalDate.now());
+		//return rec.getDuedate().isBefore(LocalDate.now().plusDays(22)); //for testing
 	}
 
 	// get all overdue records for a book

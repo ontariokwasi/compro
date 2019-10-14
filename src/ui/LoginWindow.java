@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import business.ControllerInterface;
-import business.LoginException;
 import business.SystemController;
 import dataaccess.Auth;
 import javafx.event.ActionEvent;
@@ -19,7 +18,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -90,6 +88,7 @@ public class LoginWindow extends Stage implements LibWindow {
 		loginBtn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
+				
 				try {
 					ControllerInterface c = new SystemController();
 					c.login(userTextField.getText().trim(), pwBox.getText().trim());
@@ -128,7 +127,7 @@ public class LoginWindow extends Stage implements LibWindow {
 					Start.hideAllWindows();
 					Start.primStage().show();
 
-				} catch (LoginException ex) {
+				} catch (Exception ex) {
 					messageBar.setFill(Start.Colors.red);
 					messageBar.setText("Error! " + ex.getMessage());
 				}

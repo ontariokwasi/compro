@@ -1,16 +1,12 @@
 package ui;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import business.Book;
 import business.SystemController;
-import dataaccess.DataAccessFacade;
 import dataaccess.TestData;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
