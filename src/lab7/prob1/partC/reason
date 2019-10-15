@@ -1,0 +1,1 @@
+The containsKey of HashMap uses hashCode method from Object class which is not overriden in the Employee class
