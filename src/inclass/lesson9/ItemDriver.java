@@ -1,6 +1,7 @@
 package inclass.lesson9;
 
 import java.util.function.BiFunction;
+import java.util.stream.Stream;
 
 public class ItemDriver {
 
@@ -14,7 +15,13 @@ public class ItemDriver {
 		
 		//Method reference
 		BiFunction<String, Double, Item> ob2 = Item::new;
-		System.out.println(ob2.apply("Food", 20.1));
+		Item item1 = ob2.apply("Watch", 10.1);
+		Item item2 = ob2.apply("Laptop", 1000.99);
+		Item item3 = ob2.apply("phone", 100.99);
+		
+		Stream.of(item1, item2, item3)
+		.filter(item -> item.getName().equals("Watch"))
+		.forEach(System.out::println);
 
 	}
 
