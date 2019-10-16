@@ -4,6 +4,10 @@ public interface Polygon extends ClosedCurve {
 	double [] getSides();
 	
 	default double computePerimeter() {
-		return 0.0;
+		double [] sides = getSides();
+		double perimeter = 0;
+		for(double d : sides)
+			perimeter += d;
+		return perimeter;
 	}
 }

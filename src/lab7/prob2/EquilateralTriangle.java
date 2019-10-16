@@ -13,10 +13,4 @@ public class EquilateralTriangle implements Polygon {
 		return retval;
 	}
 
-	@Override
-	public double computePerimeter() {
-
-		return 3 * side;
-	}
-
 }
