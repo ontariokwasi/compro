@@ -1,5 +1,4 @@
 package inclass.lab.ex5;
-import java.util.*;
 
 //Why doesn't this equals method work?
 public class Person {
@@ -16,11 +15,10 @@ public class Person {
 		return isEqual;
 	}
 	
-	public static void main(String[] args) {
-		Person p1 = new Person("Joe");
-		Person p2 = new Person("Joe");
-		System.out.println(p1.equals(p2));
-	}
+	/*
+	 * public static void main(String[] args) { Person p1 = new Person("Joe");
+	 * Person p2 = new Person("Joe"); System.out.println(p1.equals(p2)); }
+	 */
 	
 	
 }

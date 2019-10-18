@@ -1,6 +1,6 @@
 package inclass.lesson8;
 
+@FunctionalInterface
 public interface RandomIface<R> {
-	//@FunctionalInterface
 	R apply();
 }

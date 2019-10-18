@@ -13,7 +13,9 @@ public class Lambda1 {
 		DoubleFunction<Double> exp1 = (f) -> (f-32)*5/9;
 		System.out.println(exp1.apply(60));
 		
-		RandomIface<Integer> rand = () -> new Random().nextInt();
+		RandomIface<Integer> rand = () -> new Random().nextInt(5); //lambda way
+		RandomIface<Integer> r = new Random()::nextInt; //method reference
+		System.out.println(r.apply());
 		System.out.println(rand.apply());
 
 	}
