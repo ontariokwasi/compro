@@ -17,6 +17,9 @@ public class Lab0 extends JFrame
 		getContentPane().setLayout(null);
 		setSize(256,148);
 		setVisible(false);
+		
+		counter = new Counter (); // subject 
+		
 		JButtonIncrease.setText("+");
 		getContentPane().add(JButtonIncrease);
 		JButtonIncrease.setBounds(24,60,88,30);
@@ -33,7 +36,6 @@ public class Lab0 extends JFrame
 		ovalf.setVisible(true);
 		ovalf.setBounds(250, 400, 300, 200);
 		
-		counter = new Counter (); // subject
 		//attach observers
 		counter.addObserver(textf);
 		counter.addObserver(rectf);

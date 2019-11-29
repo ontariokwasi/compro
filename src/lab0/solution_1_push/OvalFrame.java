@@ -6,9 +6,11 @@ import java.awt.*;
 public class OvalFrame extends ObserverView
 {
     private int count;
+    private Counter counter;
 	public OvalFrame(Counter counter)
 	{
-		super(counter);
+		this.counter = counter;
+		
 		getContentPane().setLayout(null);
 		setSize(300,200);
 		setTitle("OvalFrame");
@@ -64,7 +66,7 @@ public  void  paint(  Graphics  display  )
 
 @Override
 public void update() {
-	super.update();	
+	setCount(counter.getcount());	
 }
 
 }
