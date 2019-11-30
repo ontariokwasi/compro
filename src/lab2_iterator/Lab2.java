@@ -2,6 +2,9 @@ package lab2_iterator;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import lab2_iterator.SwimmersList.Order;
+
 import java.util.*;
 
 /**
@@ -9,7 +12,11 @@ import java.util.*;
  */
 public class Lab2 extends javax.swing.JFrame
 {
-    private SwimmersList slist;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private SwimmersList slist;
     
 	public Lab2()   
 	{
@@ -39,7 +46,7 @@ public class Lab2 extends javax.swing.JFrame
 
 		JScrollPane1.setBounds(12,60,190,109);
 		JScrollPane1.getViewport().add(JTextArea1);
-		JTextArea1.setBounds(0,0,188,206);
+		//JTextArea1.setBounds(0,0,180,200);
 
 		getContentPane().add(JScrollPane2);
 		JScrollPane2.setBounds(216,60,182,204);
@@ -64,14 +71,16 @@ public class Lab2 extends javax.swing.JFrame
 
 	static public void main(String args[])
 	{
+		Lab2 lb = new Lab2();
 		try {
 		    try {
-		        //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		    } 
 		    catch (Exception e) { 
 		    }
 			//Create a new instance of our application's frame, and make it visible.
-			(new Lab2()).setVisible(true);
+			//(new Lab2()).setVisible(true);
+		    lb.setVisible(true);
 		} 
 		catch (Throwable t) {
 			t.printStackTrace();
@@ -168,36 +177,53 @@ public class Lab2 extends javax.swing.JFrame
 
 	void JButtonAllSwimmers_actionPerformed(java.awt.event.ActionEvent event)
 	{
-		Vector vectorlist = slist.getVector();
+		//Vector vectorlist = slist.getVector();
 		/*
 		 * for (int x=0; x<vectorlist.size(); x++){ Swimmer swimmer=
 		 * (Swimmer)vectorlist.elementAt(x);
 		 * JTextArea1.append(swimmer.getFname()+" "+swimmer.getLname()+ " \n"); }
 		 */
-		Iterator vit = vectorlist.iterator();
-		while(vit.hasNext()) {
-			Swimmer swimmer= (Swimmer) vit.next();
+		/*
+		 * Iterator vit = vectorlist.iterator(); while(vit.hasNext()) { Swimmer swimmer=
+		 * (Swimmer) vit.next();
+		 * JTextArea1.append(swimmer.getFname()+" "+swimmer.getLname()+ " \n"); }
+		 */
+		MyIterator myIt = slist.getIterator();
+		while(myIt.hasNext()) {
+			Swimmer swimmer= (Swimmer) myIt.next();
 		    JTextArea1.append(swimmer.getFname()+" "+swimmer.getLname()+ " \n");
 		}
 	}
 
 	void JButtonAllBackward_actionPerformed(java.awt.event.ActionEvent event)
 	{
-		Vector vectorlist = slist.getVector();
-		for (int x=vectorlist.size()-1; x>-1; x--){
-		    Swimmer swimmer= (Swimmer)vectorlist.elementAt(x);
+		/*
+		 * Vector vectorlist = slist.getVector(); for (int x=vectorlist.size()-1; x>-1;
+		 * x--){ Swimmer swimmer= (Swimmer)vectorlist.elementAt(x);
+		 * JTextArea2.append(swimmer.getFname()+" "+swimmer.getLname()+ " \n"); }
+		 */
+		
+		MyIterator myIt = slist.getIterator(Order.REVERSED);
+		while(myIt.hasNext()) {
+			Swimmer swimmer= (Swimmer) myIt.next();
 		    JTextArea2.append(swimmer.getFname()+" "+swimmer.getLname()+ " \n");
 		}
+		
 			 
 	}
 
 	void JButtonAllAbove12_actionPerformed(java.awt.event.ActionEvent event)
 	{
-		Vector vectorlist = slist.getVector();
-		for (int x=0; x<vectorlist.size(); x++){
-		    Swimmer swimmer= (Swimmer)vectorlist.elementAt(x);
-		    if (swimmer.getAge()>=12)
-		       JTextArea3.append(swimmer.getFname()+" "+swimmer.getLname()+ " \n");
+		/*
+		 * Vector vectorlist = slist.getVector(); for (int x=0; x<vectorlist.size();
+		 * x++){ Swimmer swimmer= (Swimmer)vectorlist.elementAt(x); if
+		 * (swimmer.getAge()>=12)
+		 * JTextArea3.append(swimmer.getFname()+" "+swimmer.getLname()+ " \n"); }
+		 */
+		MyIterator myIt = slist.getIterator(Order.ABOVE12);
+		while(myIt.hasNext()) {
+			Swimmer swimmer= (Swimmer) myIt.next();
+		    JTextArea3.append(swimmer.getFname()+" "+swimmer.getLname()+ " \n");
 		}
 	}
 }
