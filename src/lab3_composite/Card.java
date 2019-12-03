@@ -1,7 +1,17 @@
 package lab3_composite;
-public class Card  {
-  public double netPrice()     {return 10.00;}
-  public double discountPrice() {return 1.00;}
+public class Card  implements BoardComponent{
+	private double price, discount;
+	Card(double price, double discount){
+		this.price = price;
+		this.discount = discount;
+	}
+	public double netPrice() {
+		return price ;
+	}
+
+	public double discountPrice() {
+		return price - discount;
+	}
   
   public double computePrice(){
     return netPrice();  

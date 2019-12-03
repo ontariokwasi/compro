@@ -1,25 +1,35 @@
 package lab3_composite;
 import java.util.*;
 
-public class Board {
-  private Bus bus;
-  private Vector cardlist = new Vector();
-  public void setBus (Bus b){
-    bus=b;
-  }
-  public void addCard(Card d){
-    cardlist.addElement(d);
-  }
-  public double netPrice()      {return 26.00;}
-  public double discountPrice() {return  6.00;}
+public class Board  implements Component{
+  private Vector<BoardComponent> bcomp;
   
-  public double computePrice(){
-    double tmp=discountPrice();
-    if (bus!= null)
-       tmp+=bus.computePrice();
-    for (Object card : cardlist)
-        //Card card = (Card)cardlist.elementAt(x);
-        tmp+=((Card)card).computePrice();
-    return tmp;
+  private double price, discount;
+	Board(double price, double discount){
+		this.price = price;
+		this.discount = discount;
+		bcomp = new Vector<>();
+	}
+	public double netPrice() {
+		return price ;
+	}
+
+	public double discountPrice() {
+		return price - discount;
+	}
+  
+  public void addBoardComponent(BoardComponent bcom){
+    bcomp.addElement(bcom);
   }
+  
+  public double computePrice() {
+		double tmp = netPrice();
+		for (BoardComponent comp : bcomp)
+			tmp += comp.computePrice();
+		return tmp;
+	}
+@Override
+public List<Component> getSub() {
+	return null;
+}
 }
