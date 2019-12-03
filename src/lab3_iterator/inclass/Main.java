@@ -20,7 +20,13 @@ public class Main {
 		System.out.println(mv.doAll(new SumFunctor(), p -> p > 2)); //pass in predicate direct
 		System.out.println(mv.doAll(new AverageFunctor(), pred)); // pass in stored pred
 		
-
+		//testing selective foreach looping
+		Predicate<Integer> predicate = p -> Math.floorMod(p, 2) == 0; //even numbers only
+		for(Integer d : mv.filter(predicate))
+			System.out.println(d);
+		
+		
+//		System.out.println(10%2);
 	}
 
 }

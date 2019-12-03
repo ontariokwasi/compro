@@ -49,18 +49,16 @@ public class MyVector extends Vector<Integer> {
 
 			@Override
 			public boolean hasNext() {
-				int item;
-				if (nextItem != null)
+				if(nextItem != null)
 					return true;
-				if (pIterator.hasNext()) {
-					item = pIterator.next();
-					if (pred.test(item)) {
+				while(pIterator.hasNext()) {
+					int item = pIterator.next();
+					if(pred.test(item)) {
 						nextItem = item;
 						return true;
 					}
-					hasNext();
 				}
-				return pIterator.hasNext();
+				return false;
 			}
 
 			@Override
@@ -76,6 +74,10 @@ public class MyVector extends Vector<Integer> {
 		}
 
 		return new MyIterator();
+	}
+	public Iterable<Integer> filter(Predicate<Integer> pred){
+		
+		return new View(this, pred);
 	}
 
 }
