@@ -4,14 +4,18 @@ public class PopCommand implements Command {
 	private VStack stack; // the stack object
 	private String pushstring; // the string to push on the stack
 
-	PopCommand(VStack stack, String pushstring) {
+	PopCommand(VStack stack) {
 		this.stack = stack;
-		this.pushstring = pushstring;
 	}
 
 	@Override
 	public void execute() {
-		stack.pop();
+		pushstring = (String) stack.pop();
+	}
+
+	@Override
+	public void undo() {
+		stack.push(pushstring);
 	}
 	
 }

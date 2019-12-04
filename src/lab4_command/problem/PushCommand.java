@@ -15,4 +15,10 @@ public class PushCommand implements Command {
 			stack.push(pushstring);
 	}
 
+	@Override
+	public void undo() {
+		stack.pop();
+	}
+
+
 }

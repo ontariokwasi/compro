@@ -14,6 +14,7 @@ public class Lab4 extends javax.swing.JFrame
 {
     private VStack stack = new VStack();  // the stack object
     private String pushstring="  "; // the string to push on the stack
+    private CommandManager cm = new CommandManager();
     
 	public Lab4 ()    
 	{
@@ -143,7 +144,7 @@ public class Lab4 extends javax.swing.JFrame
 	    pushstring= "";
 	    PushDialog  dialog = new PushDialog(this); //ask the user what to push
 	    dialog.setVisible(true);
-	    CommandManager.runCommand(new PushCommand(stack, pushstring)); //pass on command execution to CM
+	    cm.submit(new PushCommand(stack, pushstring)); //pass on command execution to CM
 		JList1.setListData(stack.getStackVector());  // refresh the JList
 		this.repaint();
 			 
@@ -151,7 +152,7 @@ public class Lab4 extends javax.swing.JFrame
 
 	void JButtonPop_actionPerformed(java.awt.event.ActionEvent event)
 	{
-		CommandManager.runCommand(new PopCommand(stack, pushstring)); //pass on command execution to CM
+		cm.submit(new PopCommand(stack)); //pass on command execution to CM
 		JList1.setListData(stack.getStackVector()); // refresh the JList
 		this.repaint();
 			 
@@ -159,13 +160,17 @@ public class Lab4 extends javax.swing.JFrame
 
 	void JButtonUndo_actionPerformed(java.awt.event.ActionEvent event)
 	{
-		// to do: code goes here.
+		cm.undo();
+		JList1.setListData(stack.getStackVector()); // refresh the JList
+		this.repaint();
 			 
 	}
 
 	void JButtonRedo_actionPerformed(java.awt.event.ActionEvent event)
 	{
-		// to do: code goes here.
+		cm.redo();
+		JList1.setListData(stack.getStackVector()); // refresh the JList
+		this.repaint();
 			 
 	}
 	
