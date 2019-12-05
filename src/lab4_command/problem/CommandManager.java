@@ -2,8 +2,10 @@ package lab4_command.problem;
 
 import java.util.Stack;
 
-public class CommandManager {
+public class CommandManager implements Colleague{
 	private Stack<Command> history, undoHistory;
+	private BtnStateMediator mediator;
+	private Colleague view;
 
 	CommandManager() {
 		history = new Stack<Command>();
@@ -13,6 +15,7 @@ public class CommandManager {
 	public void submit(Command cmd) {
 		cmd.execute();
 		history.push(cmd);
+		undoHistory.clear();
 	}
 
 	public void undo() {
@@ -26,8 +29,18 @@ public class CommandManager {
 	public void redo() {
 		if (!undoHistory.empty()) {
 			Command cmd = undoHistory.pop();
-			submit(cmd);
+			cmd.execute();
+			history.push(cmd);
 		}
+	}
+	private void checkstate() {
+		if(history.empty())
+			mediator.forwardstate(view, "pop", false);
+	}
+	@Override
+	public void receivestate(String btnName, boolean state) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

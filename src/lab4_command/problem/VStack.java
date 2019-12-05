@@ -1,7 +1,7 @@
 package lab4_command.problem;
 import java.util.*;
 
-public class VStack{
+public class VStack implements Colleague{
    private Vector stackvector;  
    
    public VStack(){
@@ -29,5 +29,11 @@ public class VStack{
    public Vector getStackVector(){
       return stackvector;
    }
+
+@Override
+public void receivestate(String btnName, boolean state) {
+	// TODO Auto-generated method stub
+	
+}
     
 }

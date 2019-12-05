@@ -10,7 +10,7 @@ import java.util.*;
  *
  * ************************************/
 
-public class Lab4 extends javax.swing.JFrame
+public class Lab4 extends javax.swing.JFrame implements Colleague
 {
     private VStack stack = new VStack();  // the stack object
     private String pushstring="  "; // the string to push on the stack
@@ -134,15 +134,23 @@ public class Lab4 extends javax.swing.JFrame
 		JList1.setListData(stack.getStackVector());  // refresh the JList
 		this.repaint();
 		
-		//
-		JButtonPop.setEnabled(true);
-		JButtonRedo.setEnabled(false);
-		JButtonUndo.setEnabled(true);
 	}
 	
 	public void showPushDialog() {
 		PushDialog  dialog = new PushDialog(this); //ask the user what to push
 	    dialog.setVisible(true);
+	}
+
+	@Override
+	public void receivestate(String btnName, boolean state) {
+		if(btnName.equalsIgnoreCase("pop"))
+			JButtonPop.setEnabled(state);
+		
+		if(btnName.equalsIgnoreCase("undo"))
+			JButtonPop.setEnabled(state);
+		
+		if(btnName.equalsIgnoreCase("redo"))
+			JButtonPop.setEnabled(state);
 	}
 	
 

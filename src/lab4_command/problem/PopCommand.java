@@ -16,6 +16,6 @@ public class PopCommand implements Command {
 	@Override
 	public void undo() {
 		stack.push(pushstring);
-	}
+	} 
 	
 }
