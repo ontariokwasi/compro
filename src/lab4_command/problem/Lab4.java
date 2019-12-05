@@ -14,7 +14,7 @@ public class Lab4 extends javax.swing.JFrame
 {
     private VStack stack = new VStack();  // the stack object
     private String pushstring="  "; // the string to push on the stack
-    private CommandManager cm = new CommandManager();
+    private Controller controller = new Controller(this, stack);
     
 	public Lab4 ()    
 	{
@@ -54,30 +54,14 @@ public class Lab4 extends javax.swing.JFrame
 		JButtonPop.addActionListener(lSymAction);
 		JButtonUndo.addActionListener(lSymAction);
 		JButtonRedo.addActionListener(lSymAction);
+		
+		//
+		JButtonPop.setEnabled(false);
+		JButtonRedo.setEnabled(false);
+		JButtonUndo.setEnabled(false);
 	
 	}
 
-	static public void main(String args[])
-	{
-		try {
-		    // Add the following code if you want the Look and Feel
-		    // to be set to the Look and Feel of the native system.
-		  
-		    try {
-		        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		    } 
-		    catch (Exception e) { 
-		    }
-
-			//Create a new instance of our application's frame, and make it visible.
-			(new Lab4()).setVisible(true);
-		} 
-		catch (Throwable t) {
-			t.printStackTrace();
-			//Ensure the application exits with an error condition.
-			System.exit(1);
-		}
-	}
 
 
 	//
@@ -87,7 +71,7 @@ public class Lab4 extends javax.swing.JFrame
 	javax.swing.JButton JButtonRedo = new javax.swing.JButton();
 	javax.swing.JList JList1 = new javax.swing.JList();
 	//
-
+	
 	void exitApplication()
 	{
 		try {
@@ -128,54 +112,37 @@ public class Lab4 extends javax.swing.JFrame
 		{
 			Object object = event.getSource();
 			if (object == JButtonPush)
-				JButtonPush_actionPerformed(event);
+				controller.JButtonPush_actionPerformed(event);
 			else if (object == JButtonPop)
-				JButtonPop_actionPerformed(event);
+				controller.JButtonPop_actionPerformed(event);
 			else if (object == JButtonUndo)
-				JButtonUndo_actionPerformed(event);
+				controller.JButtonUndo_actionPerformed(event);
 			else if (object == JButtonRedo)
-				JButtonRedo_actionPerformed(event);
+				controller.JButtonRedo_actionPerformed(event);
 			
 		}
-	}
-
-	void JButtonPush_actionPerformed(java.awt.event.ActionEvent event)
-	{
-	    pushstring= "";
-	    PushDialog  dialog = new PushDialog(this); //ask the user what to push
-	    dialog.setVisible(true);
-	    cm.submit(new PushCommand(stack, pushstring)); //pass on command execution to CM
-		JList1.setListData(stack.getStackVector());  // refresh the JList
-		this.repaint();
-			 
-	}
-
-	void JButtonPop_actionPerformed(java.awt.event.ActionEvent event)
-	{
-		cm.submit(new PopCommand(stack)); //pass on command execution to CM
-		JList1.setListData(stack.getStackVector()); // refresh the JList
-		this.repaint();
-			 
-	}
-
-	void JButtonUndo_actionPerformed(java.awt.event.ActionEvent event)
-	{
-		cm.undo();
-		JList1.setListData(stack.getStackVector()); // refresh the JList
-		this.repaint();
-			 
-	}
-
-	void JButtonRedo_actionPerformed(java.awt.event.ActionEvent event)
-	{
-		cm.redo();
-		JList1.setListData(stack.getStackVector()); // refresh the JList
-		this.repaint();
-			 
 	}
 	
 	public void setPushString (String string){
 	    pushstring = string;
+	}
+	public String getPushString (){
+	   return pushstring;
+	}
+	
+	public void update() {
+		JList1.setListData(stack.getStackVector());  // refresh the JList
+		this.repaint();
+		
+		//
+		JButtonPop.setEnabled(true);
+		JButtonRedo.setEnabled(false);
+		JButtonUndo.setEnabled(true);
+	}
+	
+	public void showPushDialog() {
+		PushDialog  dialog = new PushDialog(this); //ask the user what to push
+	    dialog.setVisible(true);
 	}
 	
 
