@@ -1,5 +1,5 @@
 package lab6_proxy;
 
-public interface Thing {
-
+public interface Thing<T> {
+	void compute(T string);
 }
