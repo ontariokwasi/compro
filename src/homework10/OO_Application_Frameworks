@@ -1,0 +1,7 @@
+Frameworks are object-oriented reuse technique which provides efficiency and easy maintainability of applications.
+Design reuse has more advantages than code reuse but frameworks allows reuse of both.
+
+Frameworks contains a set of patterns which are more abstract than frameworks.
+
+Frameworks have some disadvantages which includes, high cost for its development, difficult to learn.
+Frameworks share the same disadvantages with other reusable techniques except that frameworks are programming language specific. 
