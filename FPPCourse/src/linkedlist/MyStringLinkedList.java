@@ -1,5 +1,8 @@
 package linkedlist;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class MyStringLinkedList {
 	Node header;
 
@@ -222,6 +225,10 @@ public class MyStringLinkedList {
 		mySL.deleteList();
 		System.out.println(mySL);
 		mySL.printReverse();
+		
+		List<String> s = new LinkedList<>();
+		s.add("hello");
+		System.out.println(s.remove(0));
 	}
 
 }
