@@ -23,5 +23,9 @@
 
 		<!-- Mapping files -->
 		<mapping class="com.cs544.labs.lab01.Book" />
+		<mapping class="com.cs544.labs.lab02.Owner" />
+		<mapping class="com.cs544.labs.lab02.Car" />
+		<mapping class="com.cs544.labs.lab02.ex032.oneToManyBi.Department"/>
+		<mapping class="com.cs544.labs.lab02.ex032.oneToManyBi.Employee"/>
 	</session-factory>
 </hibernate-configuration>
