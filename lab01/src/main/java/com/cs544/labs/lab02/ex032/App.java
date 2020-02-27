@@ -1,13 +1,14 @@
 package com.cs544.labs.lab02.ex032;
 
+import java.util.List;
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-import com.cs544.labs.lab02.Car;
-import com.cs544.labs.lab02.Owner;
 import com.cs544.labs.lab02.ex032.oneToManyBi.Department;
 import com.cs544.labs.lab02.ex032.oneToManyBi.Employee;
 
@@ -28,7 +29,7 @@ public class App {
 		try {
 			session = sessionFactory.openSession();
 			trans = session.beginTransaction();
-			
+
 			// create two departments
 			Department dep1 = new Department("Compro");
 			Department dep2 = new Department("MBA");
@@ -36,7 +37,7 @@ public class App {
 			// add employees to the department
 			dep1.addEmployee("Gideon Akomeng");
 			dep2.addEmployee("Phil Jones");
-			
+
 			session.persist(dep1);
 			session.persist(dep2);
 			// commit save to write to disk
@@ -53,9 +54,35 @@ public class App {
 				session.close();
 		}
 
-		// get the employees in each department and verify their dept
-//		Employee emp1 = dep1.getEmplist().get(0);
-//		Employee emp2 = dep2.getEmplist().get(0);
-//		System.out.println(emp1.getDept() + "\n" + emp2.getDept());
+		//print all employees
+		printAllEmployees();
+	}
+
+	static void printAllEmployees() {
+		/**
+		 * Retrieve all saved Books from the database and display to the console
+		 */
+		Session session = null;
+		Transaction trans = null;
+		try {
+			// open new session and begin transation
+			session = sessionFactory.openSession();
+			trans = session.beginTransaction();
+
+			// query to retrieve books from db
+			@SuppressWarnings("unchecked")
+			List<Employee> emps = session.createQuery("from Employee").list();
+
+			emps.forEach(emp -> System.out.println(emp));
+
+		} catch (Exception e) {
+			if (trans.isActive()) {
+				System.out.println("Rolling back\n" + e.getMessage());
+				trans.rollback();
+			}
+		} finally {
+			if (session.isOpen())
+				session.close();
+		}
 	}
 }
