@@ -31,7 +31,9 @@ public class Streams_1 {
 		
 //---todo:		//????Use the toArray from streams to convert the above to String Array???
 		
-//		List<Integer>intList = new ArrayList<Integer>(Arrays.asList(3,5,2,3,8));
+		List<Integer>intList = new ArrayList<Integer>(Arrays.asList(3,5,2,3,8));
+		Integer[] out = intList.stream().toArray(Integer[]::new);
+		System.out.println(Arrays.toString(out));
 //		List<int[]> intsArray = intList.stream()
 //				.map(int[]::new)
 //				.collect(Collectors.toList());
