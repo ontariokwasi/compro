@@ -8,8 +8,14 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import streams.Test.TriPredicate;
+
 public class Stream_2 {
-	static final BiFunction<List<Employee>, Double, List<Employee>> MORE_THAN = (emplist, target) -> emplist.stream().filter(e->e.getSalary() > target).collect(Collectors.toList());
+	static final BiFunction<List<Employee>, Double, List<Employee>> MORE_THAN = (emplist, target) -> emplist.stream()
+			.filter(e -> e.getSalary() > target).collect(Collectors.toList());
+	static final TriPredicate<List<Employee>, Double, Character> STARTS_WITH = (emplist, target, fnbegins) -> emplist
+			.stream().filter(e -> e.getSalary() > target).filter(e -> e.getFirstname().startsWith(fnbegins + ""))
+			.findAny().isPresent();
 
 	public static void main(String[] args) {
 		List<Employee> emps = new ArrayList<>();
@@ -103,18 +109,20 @@ public class Stream_2 {
 	public static boolean earnsmoreThanAndFirstBeginsWith(List<Employee> emplist, double target, char fnbegins) {
 		// Is there an employee who earns more than {target amout} and first name begins
 		// with {fnbegins}
-		Optional<Employee> opt = emplist.stream().filter(e -> e.getSalary() > target)
-				.filter(e -> e.getFirstname().startsWith(fnbegins + "")).findAny();
+		return emplist.stream().filter(e -> e.getSalary() > target)
+				.filter(e -> e.getFirstname().startsWith(fnbegins + "")).findAny().isPresent();
 
-		return opt.isPresent();
+//		return opt.isPresent();
 	}
 
 	public static Employee firstEmpearnsMorethanAndBegins(List<Employee> emplist, double target, char begins) {
 		// find the first employee whose salary is more than target and firstname begins
 		// with begins;
+		emplist.parallelStream().collect(Collectors.groupingBy(Employee::getSalary));
 		Employee e1 = emplist.stream().filter(e -> e.getSalary() > target)
 				.filter(e -> e.getFirstname().startsWith(begins + "")).findFirst()
 				.orElse(new Employee("default", "Deafult", 0.00));
 		return e1;
 	}
+
 }

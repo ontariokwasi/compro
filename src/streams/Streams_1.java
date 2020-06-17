@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Streams_1 {
@@ -44,7 +45,8 @@ public class Streams_1 {
 ////		System.out.println(fruits);
 //		List<String>fruits1 = fruits.stream().sorted(Comparator.comparing(String::length).thenComparing(x->x)).collect(Collectors.toList());
 //		System.out.println(fruits1);
-		
+		int [] v = {1,2,3};
+		System.out.println("=>"+IntStream.of(v).count());
 //		+++++++++++++++++++++++++++++++++
 //		Optional<String> opt = Optional.of(null); // throws nullpointerException
 //		Optional<String> opt = Optional.empty(); //this creates an empty optional

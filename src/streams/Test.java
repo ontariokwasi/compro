@@ -59,4 +59,16 @@ public class Test {
 	interface TriFunction<T, U, V, R>{
 		R apply(T t, U u, V v);
 	}
+	
+	interface IntegerGenerator<T>{
+		T apply();
+	}
+	class MyInt<Y, U, R> implements IntegerGenerator<R>{
+
+		@Override
+		public R apply() {
+			return null;
+		}
+		
+	}
 }
